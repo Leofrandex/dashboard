@@ -11,7 +11,7 @@
   --ink:#14161a; --ink-2:#565b62; --muted:#8b9098;
   --line:#e2e2db; --line-soft:#ecece6; --axis:#c6c6bd;
   --accent:#1c4f8f; --accent-soft:rgba(28,79,143,.10);
-  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s7:#4a3aa7;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#00a0a8; --s7:#4a3aa7;
   --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
   --good-ink:#006300; --crit-ink:#a52b2b; --warn-ink:#8a6100;
   --seq-1:#cde2fb; --seq-2:#9ec5f4; --seq-3:#5598e7; --seq-4:#2a78d6; --seq-5:#1c5cab; --seq-6:#104281;
@@ -25,7 +25,7 @@
     --ink:#f1f2f4; --ink-2:#a8aeb6; --muted:#7f858d;
     --line:#262a30; --line-soft:#1f2228; --axis:#3a3f47;
     --accent:#7fb0ee; --accent-soft:rgba(127,176,238,.12);
-    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s7:#9085e9;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#0d9aa2; --s7:#9085e9;
     --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
     --good-ink:#3fc23f; --crit-ink:#f08080; --warn-ink:#e0ae4a;
     --seq-1:#104281; --seq-2:#1c5cab; --seq-3:#256abf; --seq-4:#2a78d6; --seq-5:#5598e7; --seq-6:#9ec5f4;
@@ -39,7 +39,7 @@
   --ink:#f1f2f4; --ink-2:#a8aeb6; --muted:#7f858d;
   --line:#262a30; --line-soft:#1f2228; --axis:#3a3f47;
   --accent:#7fb0ee; --accent-soft:rgba(127,176,238,.12);
-  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s7:#9085e9;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#0d9aa2; --s7:#9085e9;
   --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
   --good-ink:#3fc23f; --crit-ink:#f08080; --warn-ink:#e0ae4a;
   --seq-1:#104281; --seq-2:#1c5cab; --seq-3:#256abf; --seq-4:#2a78d6; --seq-5:#5598e7; --seq-6:#9ec5f4;
@@ -56,926 +56,446 @@ body{
 h1,h2,h3{font-family:Archivo,system-ui,sans-serif; text-wrap:balance; margin:0; letter-spacing:-.02em}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
 .num{font-variant-numeric:tabular-nums}
-
-/* ---------- shell ---------- */
-.wrap{max-width:1180px; margin:0 auto; padding:0 22px}
-
-.topbar{
-  position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--plane) 88%,transparent);
-  backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
-}
-.topbar .wrap{display:flex; align-items:center; gap:18px; height:52px}
-.brand{font-family:Archivo,sans-serif; font-weight:700; font-size:14px; letter-spacing:-.01em; white-space:nowrap}
-.brand span{color:var(--muted); font-weight:500}
-.navlinks{display:flex; gap:2px; overflow-x:auto; flex:1; scrollbar-width:none}
-.navlinks::-webkit-scrollbar{display:none}
-.navlinks a{
-  font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
-  color:var(--ink-2); text-decoration:none; padding:6px 9px; border-radius:5px; white-space:nowrap;
-}
-.navlinks a:hover{background:var(--accent-soft); color:var(--accent)}
-.navlinks a:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
 /* ---------- header ---------- */
-header.hero{padding:52px 0 34px; border-bottom:1px solid var(--line)}
-.eyebrow>span+span::before{content:"·"; margin-right:10px; color:var(--axis)}
+header.top{background:var(--surface);border-bottom:1px solid var(--line);padding:44px 0 30px}
 .eyebrow{
-  font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--muted); display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  display:flex;flex-wrap:wrap;gap:16px;align-items:center;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;
 }
-.eyebrow::before{content:""; width:22px; height:1px; background:var(--axis); flex:none}
-h1{font-size:clamp(34px,5.2vw,54px); line-height:1.02; margin:16px 0 0; max-width:16ch}
-.lede{max-width:62ch; color:var(--ink-2); margin:16px 0 0; font-size:16.5px}
-.meta-strip{
-  display:flex; flex-wrap:wrap; gap:6px 22px; margin-top:26px;
-  font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--muted);
+.eyebrow span:first-child{color:var(--accent)}
+header.top h1{font-size:clamp(28px,4.2vw,42px);line-height:1.08;font-weight:700}
+header.top .sub{margin:14px 0 0;font-size:18px;color:var(--ink-2);max-width:64ch}
+.meta-strip{display:flex;flex-wrap:wrap;gap:0;margin-top:26px;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.meta-strip div{flex:1 1 160px;padding:11px 15px;border-right:1px solid var(--line);background:var(--surface)}
+.meta-strip div:last-child{border-right:none}
+.meta-strip dt{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 3px}
+.meta-strip dd{margin:0;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+
+/* ---------- secciones ---------- */
+section{padding:46px 0;border-top:1px solid var(--line-soft)}
+section:first-of-type{border-top:none}
+.sec-head{margin-bottom:22px}
+.kicker{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+section h2{font-size:clamp(21px,2.7vw,28px);font-weight:600;max-width:26ch}
+.sec-head p{margin:12px 0 0;color:var(--ink-2);font-size:16px;max-width:72ch}
+
+/* ---------- tarjetas ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px;margin-bottom:26px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:14px 16px;box-shadow:var(--shadow)}
+.kpi .k{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.kpi .v{font-family:Archivo,sans-serif;font-size:29px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15;margin:5px 0 2px}
+.kpi .d{font-size:12.5px;color:var(--ink-2)}
+.kpi.hi .v{color:var(--accent)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px;box-shadow:var(--shadow)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-a{display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
+@media(max-width:860px){.grid2,.grid-a{grid-template-columns:1fr}}
+.card h3{font-size:16px;font-weight:600;margin-bottom:3px}
+.card .note{font-size:13px;color:var(--muted);margin-bottom:14px}
+
+/* ---------- barras ---------- */
+.rows{display:flex;flex-direction:column;gap:9px}
+.row{display:grid;grid-template-columns:150px 1fr auto;gap:12px;align-items:center;font-size:13.5px}
+.row .lbl{color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.track{height:9px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.fill{height:100%;border-radius:3px;background:var(--accent)}
+.row .val{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--ink);min-width:52px;text-align:right}
+
+/* ---------- timeline apilada ---------- */
+.tl{display:flex;align-items:flex-end;gap:3px;height:180px;padding-top:8px}
+.tl .col{flex:1;display:flex;flex-direction:column-reverse;min-width:0;position:relative}
+.tl .seg{width:100%}
+.tl-axis{display:flex;gap:3px;margin-top:7px}
+.tl-axis span{flex:1;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9px;color:var(--muted);text-align:center;overflow:hidden;white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:12.5px;color:var(--ink-2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+
+/* ---------- tablas ---------- */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:760px}
+th{
+  text-align:left;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;
+  padding:10px 13px;border-bottom:1px solid var(--line);background:var(--surface-2);white-space:nowrap;
 }
-.meta-strip b{color:var(--ink-2); font-weight:500}
-
-/* ---------- sections ---------- */
-section{padding:46px 0; border-bottom:1px solid var(--line)}
-section:last-of-type{border-bottom:0}
-.sec-head{display:flex; flex-direction:column; gap:10px; margin-bottom:26px}
-.sec-head h2{font-size:clamp(21px,2.6vw,27px); max-width:24ch}
-.sec-head p{margin:0; color:var(--ink-2); max-width:66ch; font-size:15px}
-
-/* ---------- cards ---------- */
-.card{
-  background:var(--surface); border:1px solid var(--line); border-radius:10px;
-  padding:20px 22px; box-shadow:var(--shadow);
+th.r{text-align:right}
+td{padding:9px 13px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+td.n{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tr.grp td{
+  background:var(--surface-2);font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);
+  padding:7px 13px;font-weight:600;
 }
-.card-title{font-family:Archivo,sans-serif; font-weight:600; font-size:14.5px; margin:0 0 3px}
-.card-sub{font-size:12.5px; color:var(--muted); margin:0 0 16px; line-height:1.45}
-.grid{display:grid; gap:14px}
-.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.g5{grid-template-columns:repeat(5,minmax(0,1fr))}
-@media(max-width:900px){.g3,.g5{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:620px){.g2,.g3,.g5{grid-template-columns:1fr}}
+tr.tot td{border-top:2px solid var(--line);font-weight:600;background:var(--surface-2)}
+.minibar{display:inline-block;height:6px;border-radius:2px;background:var(--accent);vertical-align:middle;margin-right:7px}
+.dim{color:var(--muted)}
 
-/* ---------- stat tiles ---------- */
-.tile{
-  background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px 17px 15px;
-  display:flex; flex-direction:column; gap:5px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+.tag{
+  display:inline-block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;
+  letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:3px;font-weight:500;
 }
-.tile .lab{
-  font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase;
-  color:var(--muted);
-}
-.tile .val{font-family:Archivo,sans-serif; font-weight:600; font-size:clamp(26px,3.4vw,34px); line-height:1; font-variant-numeric:tabular-nums; letter-spacing:-.03em}
-.tile .sub{font-size:12px; color:var(--ink-2); line-height:1.4}
-.tile .spark{margin-top:6px}
+.tag.ok{background:rgba(12,163,12,.12);color:var(--good-ink)}
+.tag.warn{background:rgba(250,178,25,.15);color:var(--warn-ink)}
+.tag.crit{background:rgba(208,59,59,.12);color:var(--crit-ink)}
 
-.pill{
-  display:inline-flex; align-items:center; gap:5px; font-family:"IBM Plex Mono",monospace;
-  font-size:10.5px; letter-spacing:.04em; padding:2px 7px; border-radius:20px; border:1px solid var(--ring);
-  color:var(--ink-2); background:var(--surface-2); white-space:nowrap;
-}
-.pill.good{color:var(--good-ink); border-color:color-mix(in srgb,var(--good) 35%,transparent)}
-.pill.warn{color:var(--warn-ink); border-color:color-mix(in srgb,var(--warn) 45%,transparent)}
-.pill.crit{color:var(--crit-ink); border-color:color-mix(in srgb,var(--crit) 40%,transparent)}
-.dot{width:8px;height:8px;border-radius:50%;flex:none;box-shadow:0 0 0 2px var(--surface)}
-
-/* ---------- controls ---------- */
-.segbar{display:inline-flex; background:var(--surface-2); border:1px solid var(--line); border-radius:8px; padding:3px; gap:3px; flex-wrap:wrap}
-.segbar button{
-  font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase;
-  border:0; background:transparent; color:var(--ink-2); padding:6px 11px; border-radius:6px; cursor:pointer;
-}
-.segbar button[aria-pressed="true"]{background:var(--surface); color:var(--ink); box-shadow:0 1px 2px var(--ring); font-weight:600}
-.segbar button:hover{color:var(--ink)}
-.segbar button:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
-.ctlrow{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:18px}
-input[type=search]{
-  font:inherit; font-size:13px; padding:7px 11px; border-radius:7px; border:1px solid var(--line);
-  background:var(--surface); color:var(--ink); min-width:190px;
-}
-input[type=search]:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
-
-/* ---------- legend ---------- */
-.legend{display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--ink-2); margin-bottom:12px}
-.legend span{display:inline-flex; align-items:center; gap:6px}
-
-/* ---------- tables ---------- */
-.tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:10px; background:var(--surface); box-shadow:var(--shadow)}
-table{border-collapse:collapse; width:100%; font-size:13px; min-width:640px}
-th,td{padding:9px 13px; text-align:right; border-bottom:1px solid var(--line-soft); white-space:nowrap}
-th:first-child,td:first-child{text-align:left}
-thead th{
-  font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase;
-  color:var(--muted); font-weight:500; background:var(--surface-2); position:sticky; top:0; cursor:pointer; user-select:none;
-}
-thead th:hover{color:var(--ink)}
-thead th[aria-sort]{color:var(--accent)}
-thead th .arr{opacity:.5; font-size:9px}
-tbody tr:hover{background:var(--surface-2)}
-tbody tr:last-child td{border-bottom:0}
-td.n{font-variant-numeric:tabular-nums; font-family:"IBM Plex Mono",monospace; font-size:12.5px}
-.barcell{display:flex; align-items:center; gap:8px; justify-content:flex-end}
-.minibar{display:block; height:7px; border-radius:0 3px 3px 0; background:var(--s1); flex:none}
-.flag{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:600; letter-spacing:.06em; color:var(--ink-2); background:var(--surface-2); border:1px solid var(--line); border-radius:4px; padding:1px 5px; margin-right:8px; vertical-align:1px}
-
-/* ---------- charts ---------- */
-figure{margin:0}
-figcaption{font-size:12px; color:var(--muted); margin-top:10px; line-height:1.5}
-svg{display:block; max-width:100%; overflow:visible}
-.gridline{stroke:var(--line-soft); stroke-width:1}
-.axisline{stroke:var(--axis); stroke-width:1}
-.tick{font-family:"IBM Plex Sans",sans-serif; font-size:11px; fill:var(--muted); font-variant-numeric:tabular-nums}
-.dlabel{font-family:"IBM Plex Sans",sans-serif; font-size:11.5px; fill:var(--ink-2); font-variant-numeric:tabular-nums; font-weight:500}
-.bar-hit{fill:transparent; cursor:default}
-
-/* funnel */
-.funnel{display:flex; flex-direction:column; gap:2px}
-.fstep{display:grid; grid-template-columns:190px 1fr auto; align-items:center; gap:14px; padding:7px 0}
-@media(max-width:640px){.fstep{grid-template-columns:1fr; gap:5px}}
-.fstep .flab{font-size:13px; color:var(--ink-2)}
-.fstep .flab b{display:block; color:var(--ink); font-weight:600; font-size:13.5px}
-.ftrack{display:block; background:var(--surface-2); border-radius:0 4px 4px 0; height:26px; position:relative; border-left:2px solid var(--axis); overflow:hidden}
-.ffill{display:block; height:100%; border-radius:0 4px 4px 0; transition:width .5s cubic-bezier(.4,0,.2,1)}
-.fval{font-family:"IBM Plex Mono",monospace; font-size:12.5px; font-variant-numeric:tabular-nums; color:var(--ink); min-width:112px; text-align:right}
-.fval em{font-style:normal; color:var(--muted); font-size:11.5px}
-
-/* histogram rows */
-.hrow{display:grid; grid-template-columns:104px 1fr 88px; align-items:center; gap:12px; padding:4px 0}
-.htrack{display:block; background:var(--surface-2); height:20px; border-radius:0 4px 4px 0; border-left:2px solid var(--axis); overflow:hidden}
-.hfill{display:block; height:100%; border-radius:0 4px 4px 0; transition:width .45s ease}
-.hlab{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-2); text-align:right}
-.hval{font-family:"IBM Plex Mono",monospace; font-size:11.5px; font-variant-numeric:tabular-nums; color:var(--ink-2); white-space:nowrap}
-
-/* callouts */
-.callout{
-  border:1px solid var(--line); border-left:3px solid var(--accent); background:var(--surface);
-  border-radius:0 9px 9px 0; padding:15px 18px; font-size:14px; color:var(--ink-2); line-height:1.6;
-}
+.callout{border:1px solid var(--line);border-left:3px solid var(--accent);background:var(--surface);border-radius:0 7px 7px 0;padding:16px 20px;margin:20px 0;box-shadow:var(--shadow)}
 .callout.warn{border-left-color:var(--warn)}
 .callout.crit{border-left-color:var(--crit)}
-.callout b{color:var(--ink); font-weight:600}
-.callout .k{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; color:var(--ink); font-weight:500}
+.callout h4{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.callout.warn h4{color:var(--warn-ink)} .callout.crit h4{color:var(--crit-ink)}
+.callout p{margin:8px 0 0;font-size:14.5px;color:var(--ink-2)} .callout p:first-of-type{margin-top:0}
+.callout strong{color:var(--ink)}
 
-/* proposals */
-.prop{display:grid; grid-template-columns:auto 1fr; gap:0 18px; padding:18px 0; border-bottom:1px solid var(--line-soft)}
-.prop:last-child{border-bottom:0}
-.prop .idx{
-  font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted); letter-spacing:.06em;
-  padding-top:3px; min-width:26px;
+footer{background:var(--surface);border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:13px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:640px){
+  .wrap{padding:0 16px} header.top{padding:32px 0 24px} section{padding:34px 0}
+  .row{grid-template-columns:110px 1fr auto}
 }
-.prop h3{font-size:16px; margin:0 0 5px}
-.prop p{margin:0 0 8px; color:var(--ink-2); font-size:14px; line-height:1.6}
-.prop .ev{
-  font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-2);
-  background:var(--surface-2); border:1px solid var(--line-soft); border-radius:6px; padding:7px 11px;
-  display:inline-block; line-height:1.5;
-}
-.prop .ev b{color:var(--ink); font-weight:600}
-
-footer{padding:34px 0 60px; color:var(--muted); font-size:12.5px; line-height:1.7}
-footer .wrap{display:flex; flex-wrap:wrap; gap:14px 30px; justify-content:space-between}
-
-/* tooltip */
-#tip{
-  position:fixed; z-index:100; pointer-events:none; opacity:0; transition:opacity .12s;
-  background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:9px 12px;
-  box-shadow:0 10px 30px -10px rgba(0,0,0,.35); font-size:12.5px; max-width:250px; line-height:1.5;
-}
-#tip .tt{font-weight:600; font-family:Archivo,sans-serif; display:block; margin-bottom:3px; font-size:13px}
-#tip .tr{display:flex; justify-content:space-between; gap:16px; font-variant-numeric:tabular-nums}
-#tip .tr span:last-child{font-family:"IBM Plex Mono",monospace; color:var(--ink)}
-#tip .tr span:first-child{color:var(--ink-2)}
-
-@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
 </style>
 
-<div class="topbar">
-  <div class="wrap">
-    <div class="brand">Señal y Silencio <span>· WhatsApp / GHL</span></div>
-    <nav class="navlinks">
-      <a href="#envio">Envío</a>
-      <a href="#respuesta">Respuesta</a>
-      <a href="#conversacion">Conversación</a>
-      <a href="#agenda">Agenda</a>
-      <a href="#paises">Países</a>
-      <a href="#campanas">Campañas</a>
-      <a href="#timing">Timing</a>
-      <a href="#propuesta">Qué más medir</a>
-    </nav>
-  </div>
-</div>
-
-<header class="hero">
+<header class="top">
   <div class="wrap">
     <div class="eyebrow"><span>Bernard Kizer</span><span id="hdr-window"></span><span id="hdr-gen"></span></div>
-    <h1>De 1.607 mensajes a 7 agendas</h1>
-    <p class="lede">
-      Todo lo que salió y entró por WhatsApp en la subcuenta de GHL, reconstruido mensaje por mensaje
-      desde la API de LeadConnector. No son estimaciones: cada tiempo de respuesta se calculó
-      comparando el sello de tiempo de cada mensaje con el inmediatamente anterior.
-    </p>
-    <div class="meta-strip" id="hdr-meta"></div>
+    <h1>Señal y silencio</h1>
+    <p class="sub">Qué conversaciones se abren, de dónde vienen y cuáles llegan a una agenda.</p>
+    <dl class="meta-strip" id="hdr-meta"></dl>
   </div>
 </header>
 
-<main>
-
-<!-- ================= ENVÍO ================= -->
-<section id="envio">
+<section id="conversaciones">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Envío y entrega</div>
-      <h2>¿Cuántos mensajes salieron, y cuántos de verdad llegaron?</h2>
-      <p>
-        «Enviado» son los mensajes salientes de WhatsApp. La mayoría llevan el tag de campaña
-        <span class="mono">[whatsapp] · campana-…</span>; el resto son respuestas del bot dentro de conversaciones ya abiertas.
-        Separa los dos mundos con el selector: una campaña saliente y un lead que escribe primero no se parecen en nada.
-      </p>
+      <p class="kicker">01 · Conversaciones</p>
+      <h2 id="conv-title">El volumen no es el problema</h2>
+      <p id="conv-lede"></p>
     </div>
-
-    <div class="ctlrow">
-      <div class="segbar" role="group" aria-label="Segmento">
-        <button data-seg="all" aria-pressed="true">Todo</button>
-        <button data-seg="outbound" aria-pressed="false">Campaña saliente</button>
-        <button data-seg="inbound" aria-pressed="false">Lead entrante</button>
-      </div>
-      <span class="mono" style="font-size:11.5px;color:var(--muted)" id="seg-note"></span>
-    </div>
-
-    <div class="grid g5" id="tiles" style="margin-bottom:22px"></div>
-
-    <div class="grid g2">
+    <div class="kpis" id="conv-kpis"></div>
+    <div class="grid-a">
       <div class="card">
-        <p class="card-title">Del envío a la agenda</p>
-        <p class="card-sub">Embudo en <b>contactos</b>, no en mensajes: cada barra es cuántas personas distintas llegaron a esa etapa.</p>
-        <div class="funnel" id="funnel"></div>
+        <h3>Conversaciones abiertas por día</h3>
+        <p class="note">Apiladas por canal del último mensaje.</p>
+        <div class="tl" id="tl"></div>
+        <div class="tl-axis" id="tl-axis"></div>
+        <div class="legend" id="tl-legend"></div>
       </div>
       <div class="card">
-        <p class="card-title">Volumen diario</p>
-        <p class="card-sub">Mensajes de WhatsApp por día, hora de Nueva York. Los picos son los disparos masivos de campaña.</p>
-        <div class="legend">
-          <span><i class="dot" style="background:var(--s1)"></i>Enviados</span>
-          <span><i class="dot" style="background:var(--s3)"></i>Recibidos</span>
-          <span><i class="dot" style="background:var(--crit)"></i>Fallidos</span>
-        </div>
-        <figure><div id="timeline"></div></figure>
+        <h3>Canal de entrada</h3>
+        <p class="note">Sobre el total de la ventana.</p>
+        <div class="rows" id="chan-rows"></div>
       </div>
     </div>
-
-    <div class="callout crit" style="margin-top:16px" id="deliver-callout"></div>
-  </div>
-</section>
-
-<!-- ================= RESPUESTA ================= -->
-<section id="respuesta">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow">Tiempo de respuesta</div>
-      <h2>Sí demoran — pero solo en contestar la primera vez</h2>
-      <p>
-        Estas son dos métricas distintas que suelen mezclarse. <b>Primera respuesta</b> mide desde el
-        mensaje frío de campaña hasta que ella contesta por primera vez. <b>Dentro de la conversación</b>
-        mide cada respuesta suya una vez que la conversación ya está viva. La diferencia entre ambas es el hallazgo.
-      </p>
-    </div>
-
-    <div class="grid g2" style="margin-bottom:16px">
-      <div class="card" id="lat-card-first"></div>
-      <div class="card" id="lat-card-conv"></div>
-    </div>
-
-    <div class="card">
-      <div class="ctlrow" style="margin-bottom:14px; justify-content:space-between">
-        <div>
-          <p class="card-title">Distribución del tiempo de respuesta</p>
-          <p class="card-sub" style="margin:0" id="dist-sub"></p>
-        </div>
-        <div class="segbar" role="group" aria-label="Tipo de latencia">
-          <button data-lat="firstReply" aria-pressed="true">Primera respuesta</button>
-          <button data-lat="inConv" aria-pressed="false">Dentro de la conversación</button>
+    <div class="grid2" style="margin-top:16px">
+      <div class="card">
+        <h3>¿Hasta dónde llega la conversación?</h3>
+        <p class="note">Cuántas conversaciones alcanzan cada cantidad de mensajes.</p>
+        <div class="rows" id="cont-rows"></div>
+      </div>
+      <div class="card">
+        <h3>Número de entrada</h3>
+        <p class="note">Cuál de nuestros números recibe y sostiene más conversación.</p>
+        <div class="tbl-wrap" style="border:none;box-shadow:none">
+          <table id="num-tbl" style="min-width:0"></table>
         </div>
       </div>
-      <div id="lat-hist"></div>
     </div>
-
-    <div class="callout" style="margin-top:16px" id="lat-callout"></div>
   </div>
 </section>
 
-<!-- ================= CONVERSACIÓN ================= -->
-<section id="conversacion">
+<section id="fuentes">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Profundidad conversacional</div>
-      <h2>El promedio miente: o no contestan, o hablan mucho</h2>
-      <p>
-        Promediar todas las conversaciones da <span class="mono num" id="avg-all"></span> mensajes, un número que no describe
-        a nadie. La realidad es bimodal: la mayoría se queda en un solo mensaje sin respuesta, y las que arrancan
-        se convierten en hilos largos.
-      </p>
+      <p class="kicker">02 · Fuentes de tráfico</p>
+      <h2>De dónde viene cada conversación, y cuál termina en agenda</h2>
+      <p>Cada trigger link redirige a un <span class="mono">wa.me</span> con un texto pre-cargado distinto, así que la fuente queda firmada en el primer mensaje del lead. Lo que no llega por trigger link se clasifica por canal.</p>
     </div>
-
-    <div class="grid g3" style="margin-bottom:16px" id="conv-tiles"></div>
-
-    <div class="grid g2">
-      <div class="card">
-        <p class="card-title">Dónde se cae la conversación</p>
-        <p class="card-sub">De las 680 conversaciones, cuántas llegan a N respuestas de ella. La caída fuerte está en el primer turno.</p>
-        <div id="depth"></div>
-      </div>
-      <div class="card">
-        <p class="card-title">Toques hasta la primera respuesta</p>
-        <p class="card-sub">En las campañas salientes, cuántos mensajes hubo que mandar antes de que ella contestara.</p>
-        <div id="touches"></div>
-        <div class="callout warn" style="margin-top:16px" id="touch-callout"></div>
-      </div>
-    </div>
+    <div class="tbl-wrap"><table id="src-tbl"></table></div>
+    <div id="src-callout"></div>
   </div>
 </section>
 
-<!-- ================= AGENDA ================= -->
-<section id="agenda">
+<section id="embudo">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Agendamiento</div>
-      <h2>Cuánto tarda el bot en agendar</h2>
-      <p>
-        Cita = evento creado en cualquiera de los 5 calendarios de la subcuenta para un contacto que tuvo
-        conversación de WhatsApp. El tiempo se mide desde el primer envío hasta el momento en que se creó el evento.
-      </p>
+      <p class="kicker">03 · Calificación</p>
+      <h2>El embudo del agente de IA</h2>
+      <p>Contactos acumulados por etiqueta. A diferencia del resto del reporte, estos números no están limitados a la ventana: son el acumulado histórico de la sub-cuenta.</p>
     </div>
-
-    <div class="grid g3" style="margin-bottom:16px" id="book-tiles"></div>
-
-    <div class="callout warn" style="margin-bottom:16px" id="book-warn"></div>
-
-    <div class="card">
-      <p class="card-title">Las agendas, una por una</p>
-      <p class="card-sub">Con n tan bajo, la tabla completa dice más que cualquier promedio.</p>
-      <div class="tbl-wrap" style="border:0;box-shadow:none">
-        <table id="book-tbl"></table>
-      </div>
-    </div>
+    <div class="card"><div class="rows" id="funnel-rows"></div></div>
   </div>
 </section>
 
-<!-- ================= PAÍSES ================= -->
-<section id="paises">
+<section id="latencia">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Geografía</div>
-      <h2>Qué países responden más</h2>
-      <p>
-        Deducido del prefijo E.164 del teléfono de cada contacto. Dos columnas cuentan historias opuestas:
-        <b>% responde</b> es demanda, <b>% falla</b> es infraestructura. Un país puede tener buena tasa de respuesta
-        y aun así estar quemando envíos.
-      </p>
+      <p class="kicker">04 · Ritmo</p>
+      <h2 id="lat-title">Cuánto se tarda en contestar</h2>
+      <p id="lat-lede"></p>
     </div>
-
-    <div class="grid g2" style="margin-bottom:16px">
+    <div class="grid2">
       <div class="card">
-        <p class="card-title">Tasa de respuesta</p>
-        <p class="card-sub">Solo países con 10 o más conversaciones — por debajo de eso el porcentaje es ruido.</p>
-        <div id="ctry-reply"></div>
+        <h3>El lead tarda en contestar la primera vez</h3>
+        <p class="note" id="lat-frl-note"></p>
+        <div class="rows" id="lat-frl"></div>
       </div>
       <div class="card">
-        <p class="card-title">Tasa de fallo de entrega</p>
-        <p class="card-sub">Mensajes que WhatsApp devolvió como <span class="mono">failed</span>. Envío gastado, cero alcance.</p>
-        <div id="ctry-fail"></div>
+        <h3>Nosotros tardamos en responderle</h3>
+        <p class="note" id="lat-bot-note"></p>
+        <div class="rows" id="lat-bot"></div>
       </div>
     </div>
-
-    <div class="ctlrow">
-      <input type="search" id="ctry-search" placeholder="Buscar país…" aria-label="Buscar país">
-      <span class="mono" style="font-size:11.5px;color:var(--muted)">Clic en cualquier encabezado para ordenar</span>
-    </div>
-    <div class="tbl-wrap"><table id="ctry-tbl"></table></div>
   </div>
 </section>
 
-<!-- ================= CAMPAÑAS ================= -->
-<section id="campanas">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow">Campañas</div>
-      <h2>Rendimiento por tag de campaña</h2>
-      <p>Agrupado por el tag <span class="mono">[whatsapp] · campana-…</span> del contacto. Los leads entrantes se listan aparte porque no son un envío.</p>
-    </div>
-    <div class="tbl-wrap"><table id="camp-tbl"></table></div>
-    <div class="callout" style="margin-top:16px" id="camp-callout"></div>
-  </div>
-</section>
-
-<!-- ================= TIMING ================= -->
 <section id="timing">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Momento del envío</div>
-      <h2>A qué hora y qué día se disparó</h2>
-      <p>
-        Solo campañas salientes, hora de Nueva York. Con tan pocas ventanas de disparo esto todavía no
-        es una recomendación de horario: es la constatación de que casi no se ha probado otro horario.
-      </p>
+      <p class="kicker">05 · Cuándo</p>
+      <h2>A qué hora y qué día se abre la conversación</h2>
+      <p>Distribución de la primera salida nuestra, con la porción que terminó recibiendo respuesta.</p>
     </div>
-    <div class="grid g2">
-      <div class="card">
-        <p class="card-title">Por hora del día</p>
-        <p class="card-sub">Contactos con primer envío en esa hora, y qué porcentaje respondió.</p>
-        <div id="hours"></div>
-      </div>
-      <div class="card">
-        <p class="card-title">Por día de la semana</p>
-        <p class="card-sub">Mismo criterio, agrupado por día.</p>
-        <div id="dow"></div>
-      </div>
+    <div class="grid2">
+      <div class="card"><h3>Por hora</h3><p class="note">Hora local.</p><div class="rows" id="hours"></div></div>
+      <div class="card"><h3>Por día de la semana</h3><p class="note">&nbsp;</p><div class="rows" id="dow"></div></div>
     </div>
-    <div class="callout warn" style="margin-top:16px" id="timing-callout"></div>
   </div>
 </section>
 
-<!-- ================= PROPUESTA ================= -->
-<section id="propuesta">
+<section id="campanas">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Recomendación</div>
-      <h2>Qué más vale la pena medir</h2>
-      <p>
-        Ocho métricas que este mismo dataset ya soporta y que responden preguntas que las de arriba dejan abiertas.
-        Cada una viene con la evidencia que la justifica, sacada de los datos que acabas de ver.
-      </p>
+      <p class="kicker">06 · Campañas y citas</p>
+      <h2>Salientes de WhatsApp y agenda de los closers</h2>
     </div>
-    <div class="card" id="props"></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Contactos por campaña</h3>
+        <p class="note">Acumulado por etiqueta de campaña.</p>
+        <div class="rows" id="camp-rows"></div>
+      </div>
+      <div class="card">
+        <h3>Citas por closer</h3>
+        <p class="note">Dentro de la ventana, más los próximos 7 días.</p>
+        <div class="tbl-wrap" style="border:none;box-shadow:none">
+          <table id="closer-tbl" style="min-width:0"></table>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-</main>
-
 <footer>
-  <div class="wrap">
-    <div>
-      Fuente: API LeadConnector v2 · subcuenta <span class="mono">qv9rF8ulG9G4xN53nl3v</span><br>
-      18.593 conversaciones barridas · 795 con actividad de WhatsApp o tag de campaña · 3.522 mensajes leídos uno a uno.
-    </div>
-    <div id="foot-gen"></div>
-  </div>
+  <div class="wrap"><div id="foot-gen"></div></div>
 </footer>
 
-<div id="tip" role="tooltip" aria-hidden="true"></div>
-
 <script>
-const DATA = {"generatedAt":"2026-08-21T20:31:21.411Z","window":{"from":"2026-07-22","to":"2026-08-21"},"totals":{"convs":680,"campaignConvs":650,"out":1607,"outOk":1478,"failed":129,"delivered":1433,"read":895,"inb":722,"replied":76,"booked":7,"opps":27,"oppValue":10501.5,"failRate":8,"deliveryRate":89.2,"readRate":55.7,"replyRate":11.2,"avgMsgsAll":3.42},"segments":{"outbound":{"label":"Campaña saliente","convs":654,"out":1154,"outOk":1029,"failed":125,"delivered":993,"read":511,"inb":420,"reached":555,"replied":50,"replyRate":7.6,"replyRateReached":9,"booked":7,"avgMsgs":2.41,"avgMsgsReplied":18.46,"medMsgsReplied":10.5,"avgOutReplied":10.06,"avgInReplied":8.4,"latMed":101048,"latMean":2225342.6297376095,"latP90":3125952,"latN":343,"frlMed":1393287.5,"frlMean":8922877.06,"frlP90":36650695,"frlN":50,"oppValue":10501.5,"opps":19},"inbound":{"label":"Lead entrante","convs":26,"out":453,"outOk":449,"failed":4,"delivered":440,"read":384,"inb":302,"reached":24,"replied":26,"replyRate":100,"replyRateReached":100,"booked":0,"avgMsgs":29.04,"avgMsgsReplied":29.04,"medMsgsReplied":9,"avgOutReplied":17.42,"avgInReplied":11.62,"latMed":91224,"latMean":3308224.176211454,"latP90":730093,"latN":227,"frlMed":null,"frlMean":null,"frlP90":null,"frlN":0,"oppValue":0,"opps":8},"all":{"label":"Total","convs":680,"out":1607,"outOk":1478,"failed":129,"delivered":1433,"read":895,"inb":722,"reached":579,"replied":76,"replyRate":11.2,"replyRateReached":12.8,"booked":7,"avgMsgs":3.42,"avgMsgsReplied":22.08,"medMsgsReplied":10,"avgOutReplied":12.58,"avgInReplied":9.5,"latMed":97248,"latMean":2656595.456140351,"latP90":1771882,"latN":570,"frlMed":1393287.5,"frlMean":8922877.06,"frlP90":36650695,"frlN":50,"oppValue":10501.5,"opps":27}},"latency":{"inConv":{"n":570,"med":97248,"mean":2656595.456140351,"p25":39249,"p75":301623,"p90":1771882,"dist":[{"label":"< 1 min","n":199},{"label":"1-5 min","n":228},{"label":"5-30 min","n":87},{"label":"30 min - 2 h","n":28},{"label":"2-12 h","n":22},{"label":"12-24 h","n":4},{"label":"> 24 h","n":2}]},"firstReply":{"n":50,"med":1393287.5,"mean":8922877.06,"p25":122696,"p75":6340809,"p90":36650695,"dist":[{"label":"< 1 min","n":8},{"label":"1-5 min","n":10},{"label":"5-30 min","n":11},{"label":"30 min - 2 h","n":9},{"label":"2-12 h","n":9},{"label":"12-24 h","n":2},{"label":"> 24 h","n":1}]},"bot":{"n":585,"med":21209,"mean":166501.93504273504,"p90":52119},"outsideWindow":2,"outsideWindowPct":0.4},"booking":{"n":7,"fromFirstSend":{"n":2,"med":53978854.5,"mean":53978854.5,"min":6546275,"max":101411434},"fromEngage":{"n":2,"med":1835921.5,"mean":1835921.5},"msgsToBook":{"med":18,"mean":18.333333333333332},"bySource":{"conversations_ai":2,"booking_widget":5},"rows":[{"name":"Marleni Paytor","country":"Venezuela","flag":"🇻🇪","iso":"VE","campaign":"campana-19-ago-int","initiatedBy":"outbound","bookMs":6546275,"bookEngageMs":2231280,"msgsToBook":18,"apptSource":"conversations_ai","apptStatus":"confirmed","apptAt":1787282408000,"oppValue":3000},{"name":"Karla González","country":"Estados Unidos","flag":"🇺🇸","iso":"US","campaign":"campana-13-ago","initiatedBy":"outbound","bookMs":101411434,"bookEngageMs":1440563,"msgsToBook":36,"apptSource":"conversations_ai","apptStatus":"confirmed","apptAt":1786933861000,"oppValue":1.5},{"name":"Genesis Molina Flores","country":"Chile","flag":"🇨🇱","iso":"CL","campaign":null,"initiatedBy":"outbound","bookMs":null,"bookEngageMs":null,"msgsToBook":0,"apptSource":"booking_widget","apptStatus":"confirmed","apptAt":1786493606000,"oppValue":1500},{"name":"Berkis de la Rosa de la Rosa","country":"República Dominicana","flag":"🇩🇴","iso":"DO","campaign":null,"initiatedBy":"outbound","bookMs":null,"bookEngageMs":null,"msgsToBook":1,"apptSource":"booking_widget","apptStatus":"confirmed","apptAt":1786631059000,"oppValue":1500},{"name":"Yenny Arias","country":"Chile","flag":"🇨🇱","iso":"CL","campaign":null,"initiatedBy":"outbound","bookMs":null,"bookEngageMs":null,"msgsToBook":0,"apptSource":"booking_widget","apptStatus":"confirmed","apptAt":1786477178000,"oppValue":1500},{"name":"Erika Karel","country":"Bélgica","flag":"🇧🇪","iso":"BE","campaign":null,"initiatedBy":"outbound","bookMs":null,"bookEngageMs":null,"msgsToBook":0,"apptSource":"booking_widget","apptStatus":"confirmed","apptAt":1786461615000,"oppValue":1500},{"name":"María Coria María Coria","country":"Argentina","flag":"🇦🇷","iso":"AR","campaign":null,"initiatedBy":"outbound","bookMs":null,"bookEngageMs":null,"msgsToBook":0,"apptSource":"booking_widget","apptStatus":"confirmed","apptAt":1786408255000,"oppValue":1500}],"totalApptsLocation":87},"countries":[{"country":"Estados Unidos","flag":"🇺🇸","iso":"US","convs":378,"out":750,"failed":68,"failRate":9.1,"delivered":659,"deliveryRate":87.9,"inb":276,"replied":30,"replyRate":7.9,"reached":337,"replyRateReached":8.9,"msgsPerReplier":9.2,"booked":1,"latMed":102563,"frlMed":1054667,"oppValue":1.5},{"country":"Venezuela","flag":"🇻🇪","iso":"VE","convs":86,"out":228,"failed":2,"failRate":0.9,"delivered":225,"deliveryRate":98.7,"inb":126,"replied":12,"replyRate":14,"reached":83,"replyRateReached":14.5,"msgsPerReplier":10.5,"booked":1,"latMed":121207,"frlMed":101960,"oppValue":3000},{"country":"México","flag":"🇲🇽","iso":"MX","convs":46,"out":109,"failed":9,"failRate":8.3,"delivered":93,"deliveryRate":85.3,"inb":57,"replied":3,"replyRate":6.5,"reached":35,"replyRateReached":8.6,"msgsPerReplier":19,"booked":0,"latMed":89695,"frlMed":3311391,"oppValue":0},{"country":"Argentina","flag":"🇦🇷","iso":"AR","convs":39,"out":113,"failed":5,"failRate":4.4,"delivered":105,"deliveryRate":92.9,"inb":50,"replied":6,"replyRate":15.4,"reached":35,"replyRateReached":17.1,"msgsPerReplier":8.3,"booked":1,"latMed":55467,"frlMed":118284.5,"oppValue":1500},{"country":"Colombia","flag":"🇨🇴","iso":"CO","convs":19,"out":36,"failed":2,"failRate":5.6,"delivered":34,"deliveryRate":94.4,"inb":14,"replied":4,"replyRate":21.1,"reached":17,"replyRateReached":23.5,"msgsPerReplier":3.5,"booked":0,"latMed":198410,"frlMed":19877326.5,"oppValue":0},{"country":"Guatemala","flag":"🇬🇹","iso":"GT","convs":19,"out":19,"failed":2,"failRate":10.5,"delivered":15,"deliveryRate":78.9,"inb":0,"replied":0,"replyRate":0,"reached":15,"replyRateReached":0,"msgsPerReplier":0,"booked":0,"latMed":null,"frlMed":null,"oppValue":0},{"country":"Brasil","flag":"🇧🇷","iso":"BR","convs":18,"out":23,"failed":17,"failRate":73.9,"delivered":6,"deliveryRate":26.1,"inb":4,"replied":1,"replyRate":5.6,"reached":1,"replyRateReached":100,"msgsPerReplier":4,"booked":0,"latMed":5375.5,"frlMed":null,"oppValue":0},{"country":"Puerto Rico","flag":"🇵🇷","iso":"PR","convs":16,"out":18,"failed":3,"failRate":16.7,"delivered":15,"deliveryRate":83.3,"inb":0,"replied":0,"replyRate":0,"reached":13,"replyRateReached":0,"msgsPerReplier":0,"booked":0,"latMed":null,"frlMed":null,"oppValue":0},{"country":"Honduras","flag":"🇭🇳","iso":"HN","convs":14,"out":47,"failed":1,"failRate":2.1,"delivered":43,"deliveryRate":91.5,"inb":39,"replied":2,"replyRate":14.3,"reached":13,"replyRateReached":15.4,"msgsPerReplier":19.5,"booked":0,"latMed":37045,"frlMed":4104712.5,"oppValue":0},{"country":"República Dominicana","flag":"🇩🇴","iso":"DO","convs":11,"out":153,"failed":1,"failRate":0.7,"delivered":149,"deliveryRate":97.4,"inb":93,"replied":7,"replyRate":63.6,"reached":8,"replyRateReached":87.5,"msgsPerReplier":13.3,"booked":1,"latMed":93870.5,"frlMed":828763,"oppValue":1500},{"country":"España","flag":"🇪🇸","iso":"ES","convs":10,"out":20,"failed":0,"failRate":0,"delivered":18,"deliveryRate":90,"inb":4,"replied":3,"replyRate":30,"reached":10,"replyRateReached":30,"msgsPerReplier":1.3,"booked":0,"latMed":22321501,"frlMed":29167467,"oppValue":0},{"country":"Chile","flag":"🇨🇱","iso":"CL","convs":10,"out":17,"failed":11,"failRate":64.7,"delivered":6,"deliveryRate":35.3,"inb":2,"replied":2,"replyRate":20,"reached":3,"replyRateReached":66.7,"msgsPerReplier":1,"booked":2,"latMed":null,"frlMed":175498,"oppValue":3000},{"country":"Canadá","flag":"🇨🇦","iso":"CA","convs":5,"out":21,"failed":3,"failRate":14.3,"delivered":17,"deliveryRate":81,"inb":8,"replied":1,"replyRate":20,"reached":2,"replyRateReached":50,"msgsPerReplier":8,"booked":0,"latMed":256456,"frlMed":3222962,"oppValue":0},{"country":"Francia","flag":"🇫🇷","iso":"FR","convs":2,"out":2,"failed":1,"failRate":50,"delivered":1,"deliveryRate":50,"inb":0,"replied":0,"replyRate":0,"reached":1,"replyRateReached":0,"msgsPerReplier":0,"booked":0,"latMed":null,"frlMed":null,"oppValue":0},{"country":"Japón","flag":"🇯🇵","iso":"JP","convs":1,"out":4,"failed":0,"failRate":0,"delivered":4,"deliveryRate":100,"inb":4,"replied":1,"replyRate":100,"reached":1,"replyRateReached":100,"msgsPerReplier":4,"booked":0,"latMed":50438.5,"frlMed":122696,"oppValue":0},{"country":"Países Bajos","flag":"🇳🇱","iso":"NL","convs":1,"out":1,"failed":0,"failRate":0,"delivered":1,"deliveryRate":100,"inb":0,"replied":0,"replyRate":0,"reached":1,"replyRateReached":0,"msgsPerReplier":0,"booked":0,"latMed":null,"frlMed":null,"oppValue":0},{"country":"Bélgica","flag":"🇧🇪","iso":"BE","convs":1,"out":2,"failed":1,"failRate":50,"delivered":1,"deliveryRate":50,"inb":0,"replied":0,"replyRate":0,"reached":1,"replyRateReached":0,"msgsPerReplier":0,"booked":1,"latMed":null,"frlMed":null,"oppValue":1500},{"country":"Ecuador","flag":"🇪🇨","iso":"EC","convs":1,"out":22,"failed":0,"failRate":0,"delivered":22,"deliveryRate":100,"inb":18,"replied":1,"replyRate":100,"reached":1,"replyRateReached":100,"msgsPerReplier":18,"booked":0,"latMed":111947,"frlMed":null,"oppValue":0},{"country":"Desconocido","flag":"🏳️","iso":"ZZ","convs":1,"out":17,"failed":2,"failRate":11.8,"delivered":15,"deliveryRate":88.2,"inb":20,"replied":1,"replyRate":100,"reached":1,"replyRateReached":100,"msgsPerReplier":20,"booked":0,"latMed":75938,"frlMed":null,"oppValue":0},{"country":"Reino Unido","flag":"🇬🇧","iso":"GB","convs":1,"out":1,"failed":1,"failRate":100,"delivered":0,"deliveryRate":0,"inb":5,"replied":1,"replyRate":100,"reached":0,"replyRateReached":0,"msgsPerReplier":5,"booked":0,"latMed":null,"frlMed":null,"oppValue":0},{"country":"Italia","flag":"🇮🇹","iso":"IT","convs":1,"out":4,"failed":0,"failRate":0,"delivered":4,"deliveryRate":100,"inb":2,"replied":1,"replyRate":100,"reached":1,"replyRateReached":100,"msgsPerReplier":2,"booked":0,"latMed":31435,"frlMed":null,"oppValue":0}],"campaigns":[{"name":"campana-13-ago","convs":368,"out":636,"failed":54,"failRate":8.5,"deliveryRate":88.2,"inb":218,"replied":25,"replyRate":6.8,"booked":1,"bookRate":0.3,"latMed":107570.5,"frlMed":1054667,"oppValue":1.5},{"name":"campana-19-ago-int","convs":256,"out":491,"failed":44,"failRate":9,"deliveryRate":88.2,"inb":218,"replied":26,"replyRate":10.2,"booked":1,"bookRate":0.4,"latMed":91224,"frlMed":2374092.5,"oppValue":3000},{"name":"(lead entrante / orgánico)","convs":22,"out":417,"failed":4,"failRate":1,"deliveryRate":96.9,"inb":283,"replied":22,"replyRate":100,"booked":0,"bookRate":0,"latMed":91443,"frlMed":null,"oppValue":0},{"name":"campana-19-ago-eeuu","convs":17,"out":36,"failed":15,"failRate":41.7,"deliveryRate":55.6,"inb":2,"replied":2,"replyRate":11.8,"booked":0,"bookRate":0,"latMed":null,"frlMed":null,"oppValue":0},{"name":"lead capture","convs":9,"out":9,"failed":0,"failRate":0,"deliveryRate":100,"inb":0,"replied":0,"replyRate":0,"booked":0,"bookRate":0,"latMed":null,"frlMed":null,"oppValue":0},{"name":"(sin campaña)","convs":8,"out":18,"failed":12,"failRate":66.7,"deliveryRate":33.3,"inb":1,"replied":1,"replyRate":12.5,"booked":5,"bookRate":62.5,"latMed":null,"frlMed":175498,"oppValue":7500}],"depth":[{"n":1,"convs":76},{"n":2,"convs":58},{"n":3,"convs":48},{"n":4,"convs":45},{"n":5,"convs":38},{"n":6,"convs":34},{"n":7,"convs":32},{"n":8,"convs":31},{"n":9,"convs":30},{"n":10,"convs":28},{"n":11,"convs":26},{"n":12,"convs":25}],"hours":[{"h":0,"sent":0,"replied":0},{"h":1,"sent":0,"replied":0},{"h":2,"sent":0,"replied":0},{"h":3,"sent":0,"replied":0},{"h":4,"sent":0,"replied":0},{"h":5,"sent":0,"replied":0},{"h":6,"sent":0,"replied":0},{"h":7,"sent":0,"replied":0},{"h":8,"sent":0,"replied":0},{"h":9,"sent":0,"replied":0},{"h":10,"sent":0,"replied":0},{"h":11,"sent":17,"replied":0},{"h":12,"sent":0,"replied":0},{"h":13,"sent":0,"replied":0},{"h":14,"sent":0,"replied":0},{"h":15,"sent":0,"replied":0},{"h":16,"sent":0,"replied":0},{"h":17,"sent":0,"replied":0},{"h":18,"sent":357,"replied":28},{"h":19,"sent":0,"replied":0},{"h":20,"sent":1,"replied":1},{"h":21,"sent":204,"replied":21},{"h":22,"sent":0,"replied":0},{"h":23,"sent":0,"replied":0}],"dow":[{"d":"Domingo","sent":73,"replied":8},{"d":"Lunes","sent":0,"replied":0},{"d":"Martes","sent":10,"replied":4},{"d":"Miércoles","sent":0,"replied":0},{"d":"Jueves","sent":310,"replied":26},{"d":"Viernes","sent":96,"replied":5},{"d":"Sábado","sent":90,"replied":7}],"timeline":[{"day":"2026-07-22","out":0,"failed":0,"inb":4},{"day":"2026-07-25","out":30,"failed":0,"inb":15},{"day":"2026-07-27","out":34,"failed":0,"inb":26},{"day":"2026-07-28","out":54,"failed":0,"inb":37},{"day":"2026-07-31","out":4,"failed":0,"inb":2},{"day":"2026-08-02","out":30,"failed":0,"inb":18},{"day":"2026-08-03","out":4,"failed":0,"inb":2},{"day":"2026-08-07","out":64,"failed":0,"inb":32},{"day":"2026-08-10","out":44,"failed":2,"inb":16},{"day":"2026-08-11","out":120,"failed":48,"inb":38},{"day":"2026-08-12","out":104,"failed":1,"inb":70},{"day":"2026-08-13","out":210,"failed":13,"inb":100},{"day":"2026-08-14","out":158,"failed":4,"inb":54},{"day":"2026-08-15","out":165,"failed":10,"inb":51},{"day":"2026-08-16","out":162,"failed":5,"inb":72},{"day":"2026-08-17","out":34,"failed":2,"inb":21},{"day":"2026-08-20","out":350,"failed":44,"inb":135},{"day":"2026-08-21","out":40,"failed":0,"inb":29}],"touches":{"dist":{"1":46,"2":4},"med":1,"n":50,"wastedConvs":604,"wastedSends":531}};
+const DATA = {"generatedAt":"2026-09-02T16:17:40Z","window":{"days":14,"from":"2026-08-19","to":"2026-09-02"},"conversations":{"total":6272,"withMessages":6270,"replied":2516,"replyRate":40.1,"continuity":{">=1":6270,">=2":3854,">=4":1749,">=6":1299,">=10":777,">=20":420},"continuityRate":{">=1":100.0,">=2":61.5,">=4":27.9,">=6":20.7,">=10":12.4,">=20":6.7},"byDay":[{"day":"2026-08-19","n":144,"chan":{"INSTAGRAM":98,"EMAIL":24,"WHATSAPP":3,"FACEBOOK":16,"NO_SHOW":3}},{"day":"2026-08-20","n":667,"chan":{"INSTAGRAM":191,"FACEBOOK":6,"EMAIL":34,"WHATSAPP":244,"NO_SHOW":4,"CAMPAIGN_EMAIL":188}},{"day":"2026-08-21","n":432,"chan":{"INSTAGRAM":132,"FACEBOOK":12,"WHATSAPP":253,"EMAIL":32,"NO_SHOW":3}},{"day":"2026-08-22","n":473,"chan":{"INSTAGRAM":156,"WHATSAPP":265,"FACEBOOK":11,"EMAIL":37,"NO_SHOW":4}},{"day":"2026-08-23","n":117,"chan":{"INSTAGRAM":55,"FACEBOOK":9,"WHATSAPP":7,"EMAIL":41,"NO_SHOW":5}},{"day":"2026-08-24","n":245,"chan":{"INSTAGRAM":186,"FACEBOOK":12,"EMAIL":41,"WHATSAPP":3,"NO_SHOW":3}},{"day":"2026-08-25","n":407,"chan":{"INSTAGRAM":153,"FACEBOOK":7,"EMAIL":39,"NO_SHOW":7,"LIVE_CHAT_INFO_MESSAGE":2,"CAMPAIGN_EMAIL":199}},{"day":"2026-08-26","n":1090,"chan":{"WHATSAPP":636,"INSTAGRAM":132,"EMAIL":50,"FACEBOOK":23,"NO_SHOW":5,"CAMPAIGN_EMAIL":244}},{"day":"2026-08-27","n":271,"chan":{"INSTAGRAM":176,"FACEBOOK":51,"EMAIL":40,"NO_SHOW":3,"WHATSAPP":1}},{"day":"2026-08-28","n":637,"chan":{"INSTAGRAM":541,"FACEBOOK":58,"WHATSAPP":3,"EMAIL":29,"NO_SHOW":6}},{"day":"2026-08-29","n":209,"chan":{"INSTAGRAM":142,"FACEBOOK":41,"EMAIL":18,"NO_SHOW":7,"WHATSAPP":1}},{"day":"2026-08-30","n":277,"chan":{"INSTAGRAM":128,"WHATSAPP":119,"FACEBOOK":17,"EMAIL":9,"NO_SHOW":4}},{"day":"2026-08-31","n":489,"chan":{"INSTAGRAM":422,"FACEBOOK":18,"WHATSAPP":23,"EMAIL":17,"NO_SHOW":9}},{"day":"2026-09-01","n":661,"chan":{"INSTAGRAM":570,"WHATSAPP":59,"EMAIL":13,"NO_SHOW":8,"FACEBOOK":11}},{"day":"2026-09-02","n":153,"chan":{"WHATSAPP":12,"INSTAGRAM":122,"EMAIL":10,"NO_SHOW":4,"FACEBOOK":4,"CALL":1}}],"byChannel":[{"channel":"INSTAGRAM","n":3204},{"channel":"WHATSAPP","n":1629},{"channel":"CAMPAIGN_EMAIL","n":631},{"channel":"EMAIL","n":434},{"channel":"FACEBOOK","n":296},{"channel":"NO_SHOW","n":75},{"channel":"LIVE_CHAT_INFO_MESSAGE","n":2},{"channel":"CALL","n":1}],"avgMsgs":5.01},"sources":[{"key":"ig_organico","label":"IG Orgánico / DM directo","group":"Instagram","convs":3189,"cont4":1307,"replied":1987,"qualified":0,"booked":0,"replyRate":62.3,"cont4Rate":41.0,"bookRate":0.0,"avgMsgs":6.3},{"key":"campana_wa","label":"Campaña saliente WhatsApp","group":"Campañas","convs":1511,"cont4":177,"replied":202,"qualified":53,"booked":18,"replyRate":13.4,"cont4Rate":11.7,"bookRate":1.2,"avgMsgs":3.2},{"key":"sin_firma","label":"Sin atribuir","group":"Sin atribuir","convs":708,"cont4":7,"replied":4,"qualified":1,"booked":0,"replyRate":0.6,"cont4Rate":1.0,"bookRate":0.0,"avgMsgs":1.7},{"key":"email_inbound","label":"Email entrante","group":"Otros","convs":407,"cont4":6,"replied":2,"qualified":0,"booked":0,"replyRate":0.5,"cont4Rate":1.5,"bookRate":0.0,"avgMsgs":1.2},{"key":"fb_organico","label":"Facebook · DM directo","group":"Otros","convs":296,"cont4":96,"replied":162,"qualified":0,"booked":0,"replyRate":54.7,"cont4Rate":32.4,"bookRate":0.0,"avgMsgs":5.4},{"key":"ig_kw_migrana","label":"IG Keyword · MIGRAÑA","group":"Instagram","convs":106,"cont4":104,"replied":106,"qualified":7,"booked":2,"replyRate":100.0,"cont4Rate":98.1,"bookRate":1.9,"avgMsgs":19.3},{"key":"wa_communities","label":"WA Communities","group":"WhatsApp","convs":24,"cont4":23,"replied":24,"qualified":7,"booked":1,"replyRate":100.0,"cont4Rate":95.8,"bookRate":4.2,"avgMsgs":18.2},{"key":"ig_kw_cambio","label":"IG Keyword · CAMBIO","group":"Instagram","convs":23,"cont4":23,"replied":23,"qualified":6,"booked":0,"replyRate":100.0,"cont4Rate":100.0,"bookRate":0.0,"avgMsgs":18.0},{"key":"wa_inbound","label":"WA Inbound sin firma","group":"Campañas","convs":6,"cont4":6,"replied":6,"qualified":3,"booked":2,"replyRate":100.0,"cont4Rate":100.0,"bookRate":33.3,"avgMsgs":42.8}],"numbers":[{"label":"Bot","convs":347,"replied":347,"booked":23,"replyRate":100.0}],"funnel":{"context_ready":263,"profile_ready":160,"qualified_lead":88,"appointment_sent":129,"appointment_booked":34,"ai_attended":56},"campaigns":[{"tag":"campana-rescue-26-ago-int","contacts":612},{"tag":"campana-13-ago","contacts":378},{"tag":"campana-19-ago-int","contacts":1449},{"tag":"campana-19-ago-eeuu","contacts":889},{"tag":"lead capture","contacts":65}],"closers":{"Lucas Rajoy":{"total":83,"byStatus":{"confirmed":75,"cancelled":7,"invalid":1}},"Magaly Nievas":{"total":74,"byStatus":{"confirmed":61,"cancelled":13}}},"latency":{"firstReply":{"med":3029000.0,"p90":301153000.0,"n":363,"dist":[{"label":"< 1 min","n":44},{"label":"1-5 min","n":57},{"label":"5-30 min","n":54},{"label":"30 min - 2 h","n":65},{"label":"2-12 h","n":50},{"label":"12-24 h","n":23},{"label":"> 24 h","n":70}]},"bot":{"med":60000.0,"p90":2354000.0,"n":6534,"dist":[{"label":"< 1 min","n":3267},{"label":"1-5 min","n":1928},{"label":"5-30 min","n":604},{"label":"30 min - 2 h","n":284},{"label":"2-12 h","n":343},{"label":"12-24 h","n":92},{"label":"> 24 h","n":16}]}},"hours":[{"h":0,"sent":241,"replied":123},{"h":1,"sent":959,"replied":229},{"h":2,"sent":219,"replied":131},{"h":3,"sent":124,"replied":92},{"h":4,"sent":105,"replied":79},{"h":5,"sent":59,"replied":47},{"h":6,"sent":34,"replied":25},{"h":7,"sent":25,"replied":22},{"h":8,"sent":38,"replied":28},{"h":9,"sent":42,"replied":32},{"h":10,"sent":85,"replied":70},{"h":11,"sent":145,"replied":126},{"h":12,"sent":129,"replied":97},{"h":13,"sent":358,"replied":170},{"h":14,"sent":447,"replied":169},{"h":15,"sent":412,"replied":135},{"h":16,"sent":227,"replied":107},{"h":17,"sent":125,"replied":92},{"h":18,"sent":123,"replied":86},{"h":19,"sent":296,"replied":108},{"h":20,"sent":288,"replied":85},{"h":21,"sent":344,"replied":93},{"h":22,"sent":291,"replied":101},{"h":23,"sent":360,"replied":104}],"dow":[{"d":"Lunes","sent":627,"replied":283},{"d":"Martes","sent":752,"replied":601},{"d":"Miércoles","sent":1346,"replied":436},{"d":"Jueves","sent":471,"replied":109},{"d":"Viernes","sent":922,"replied":441},{"d":"Sábado","sent":760,"replied":292},{"d":"Domingo","sent":598,"replied":189}],"touches":[{"n":1,"convs":632},{"n":2,"convs":125},{"n":3,"convs":249},{"n":4,"convs":127},{"n":5,"convs":309},{"n":6,"convs":909}],"depth":[{"n":1,"convs":6270},{"n":2,"convs":3854},{"n":3,"convs":2112},{"n":4,"convs":1749},{"n":5,"convs":1403},{"n":6,"convs":1299},{"n":7,"convs":1059},{"n":8,"convs":945},{"n":9,"convs":868},{"n":10,"convs":777},{"n":11,"convs":722},{"n":12,"convs":680},{"n":13,"convs":647},{"n":14,"convs":603},{"n":15,"convs":570},{"n":16,"convs":526},{"n":17,"convs":500},{"n":18,"convs":474},{"n":19,"convs":446},{"n":20,"convs":420}],"failedMessages":212};
 
-/* ---------------- helpers ---------------- */
-const MIN=6e4, HOUR=36e5, DAY=864e5;
-const $=(s,r=document)=>r.querySelector(s);
-const $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const nf=new Intl.NumberFormat('es-ES',{useGrouping:'always'});
-const n=v=>nf.format(Math.round(v??0));
-const n1=v=>nf.format(Math.round((v??0)*10)/10);
-function dur(ms){
-  if(ms==null||!isFinite(ms))return '—';
-  if(ms<MIN) return n1(ms/1000)+' s';
-  if(ms<HOUR) return n1(ms/MIN)+' min';
-  if(ms<DAY) return n1(ms/HOUR)+' h';
-  return n1(ms/DAY)+' d';
-}
-const pctS=v=>n1(v)+' %';
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $ = s => document.querySelector(s);
+const fmt = n => String(Math.round(n ?? 0)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const pc = n => (n ?? 0).toFixed(1).replace('.', ',') + ' %';
+// Claves que provienen de un trigger link con texto pre-cargado.
+const SIGNED = new Set(['ig_ppal_bio','ig_sec_bio','ig_sec_storie','ig_kw_migrana',
+  'ig_kw_clase','ig_kw_cambio','tt_bio','yt_bio','yt_live','wa_communities',
+  'email_signature','mc_noshow','cta_lp']);
+const CH_COLOR = {
+  INSTAGRAM: 'var(--s5)', WHATSAPP: 'var(--s3)', FACEBOOK: 'var(--s1)',
+  EMAIL: 'var(--s4)', CALL: 'var(--s7)', NO_SHOW: 'var(--s2)', SMS: 'var(--s6)'
+};
+const chColor = c => CH_COLOR[c] || 'var(--muted)';
+const chName = c => ({
+  NO_SHOW: 'SMS no-show', CAMPAIGN_EMAIL: 'Email campaña',
+  LIVE_CHAT_INFO_MESSAGE: 'Chat web', LIVE_CHAT: 'Chat web', GMB: 'Google Business'
+})[c] || c.charAt(0) + c.slice(1).toLowerCase();
 
-/* tooltip */
-const tip=$('#tip');
-function showTip(html,e){
-  tip.innerHTML=html; tip.style.opacity='1'; tip.setAttribute('aria-hidden','false');
-  const r=tip.getBoundingClientRect();
-  let x=e.clientX+14, y=e.clientY-r.height-12;
-  if(x+r.width>innerWidth-10) x=e.clientX-r.width-14;
-  if(y<10) y=e.clientY+18;
-  tip.style.left=x+'px'; tip.style.top=y+'px';
-}
-function hideTip(){tip.style.opacity='0'; tip.setAttribute('aria-hidden','true');}
-function bindTip(el,html){
-  el.addEventListener('mousemove',e=>showTip(html,e));
-  el.addEventListener('mouseleave',hideTip);
-  el.style.cursor='default';
+function dur(ms) {
+  if (ms == null) return '—';
+  const s = ms / 1000;
+  if (s < 90) return Math.round(s) + ' s';
+  const m = s / 60;
+  if (m < 90) return m.toFixed(1).replace('.', ',') + ' min';
+  const h = m / 60;
+  if (h < 48) return h.toFixed(1).replace('.', ',') + ' h';
+  return (h / 24).toFixed(1).replace('.', ',') + ' d';
 }
 
-/* ---------------- header ---------------- */
-(function header(){
-  const t=DATA.totals, w=DATA.window;
-  const fd=s=>{const[y,m,d]=s.split('-');return `${d}/${m}`;};
-  $('#hdr-window').textContent=`Ventana ${fd(w.from)} – ${fd(w.to)} de 2026`;
-  const g=new Date(DATA.generatedAt);
-  const gs=g.toLocaleDateString('es-ES',{day:'2-digit',month:'short',year:'numeric'})+' · '+g.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
-  $('#hdr-gen').textContent='Datos al '+gs;
-  $('#foot-gen').innerHTML='Generado el '+gs+'<br>Zona horaria de referencia: America/New_York';
-  $('#hdr-meta').innerHTML=[
-    ['Conversaciones', n(t.convs)],
-    ['Mensajes enviados', n(t.out)],
-    ['Mensajes recibidos', n(t.inb)],
-    ['Respondieron', n(t.replied)],
-    ['Agendaron', n(t.booked)],
-    ['Oportunidades', n(t.opps)+' · $'+n(t.oppValue)],
-  ].map(([k,v])=>`${k} <b>${v}</b>`).join('');
-  $('#avg-all').textContent=n1(t.avgMsgsAll);
-})();
-
-/* ---------------- tiles + funnel (segment aware) ---------------- */
-let SEG='all';
-function renderSeg(){
-  const s=DATA.segments[SEG];
-  const notes={
-    all:'680 conversaciones · las dos fuentes juntas',
-    outbound:'654 conversaciones que abrió un envío nuestro',
-    inbound:'26 conversaciones que abrió ella escribiendo primero'
-  };
-  $('#seg-note').textContent=notes[SEG];
-
-  const failPill = s.failed/s.out>0.05 ? 'crit' : s.failed/s.out>0.02 ? 'warn':'good';
-  const tiles=[
-    {lab:'Enviados', val:n(s.out), sub:`${n(s.outOk)} salieron bien`, pill:[failPill, n(s.failed)+' fallidos']},
-    {lab:'Entregados', val:pctS(s.out?100*s.delivered/s.out:0), sub:`${n(s.delivered)} confirmados por WhatsApp`, pill:['', n(s.read)+' leídos']},
-    {lab:'Respondieron', val:n(s.replied), sub:`de ${n(s.convs)} contactos`, pill:[s.replyRate<10?'warn':'good', pctS(s.replyRate)]},
-    {lab:'Recibidos', val:n(s.inb), sub:'mensajes que ellas escribieron', pill:['', n1(s.replied?s.inb/s.replied:0)+' por persona']},
-    {lab:'Agendaron', val:n(s.booked), sub:s.replied?`${pctS(100*s.booked/s.replied)} de las que contestaron`:'—', pill:['', '$'+n(s.oppValue)+' en oport.']},
-  ];
-  $('#tiles').innerHTML=tiles.map(t=>`
-    <div class="tile">
-      <span class="lab">${t.lab}</span>
-      <span class="val">${t.val}</span>
-      <span class="sub">${t.sub}</span>
-      ${t.pill[1]?`<span class="pill ${t.pill[0]}" style="margin-top:6px;align-self:flex-start">${t.pill[1]}</span>`:''}
+function bars(el, items, opt = {}) {
+  const max = Math.max(1, ...items.map(i => i.v));
+  el.innerHTML = items.map(i => `
+    <div class="row">
+      <span class="lbl" title="${i.l}">${i.l}</span>
+      <span class="track"><span class="fill" style="width:${(i.v / max * 100).toFixed(1)}%;background:${i.c || 'var(--accent)'}"></span></span>
+      <span class="val">${i.t ?? fmt(i.v)}</span>
     </div>`).join('');
+  if (opt.empty && !items.length) el.innerHTML = `<p class="note">${opt.empty}</p>`;
+}
 
-  const steps=[
-    {k:'Contactados',    d:'al menos un envío',        v:s.convs,   c:'var(--seq-6)'},
-    {k:'Alcanzados',     d:'al menos uno entregado',   v:s.reached, c:'var(--seq-5)'},
-    {k:'Respondieron',   d:'contestaron alguna vez',   v:s.replied, c:'var(--seq-4)'},
-    {k:'Conversaron',    d:'3 o más respuestas suyas', v:null,      c:'var(--seq-3)'},
-    {k:'Agendaron',      d:'cita creada',              v:s.booked,  c:'var(--seq-2)'},
-  ];
-  steps[3].v = SEG==='all' ? DATA.depth[2].convs : null;
-  const base=steps[0].v||1;
-  $('#funnel').innerHTML=steps.filter(x=>x.v!==null).map((x,i,arr)=>{
-    const w=Math.max(base?100*x.v/base:0, x.v>0?0.7:0);
-    const prev=i?arr[i-1].v:null;
-    return `<div class="fstep">
-      <span class="flab"><b>${x.k}</b>${x.d}</span>
-      <span class="ftrack"><span class="ffill" style="width:${w}%;background:${x.c}"></span></span>
-      <span class="fval">${n(x.v)} <em>${pctS(base?100*x.v/base:0)}${prev!==null&&prev?` · ${pctS(100*x.v/prev)} del paso previo`:''}</em></span>
-    </div>`;
+function render() {
+  const d = DATA, C = d.conversations;
+
+  // ---------- encabezado ----------
+  $('#hdr-window').textContent = `${d.window.from} → ${d.window.to} · ${d.window.days} días`;
+  const g = new Date(d.generatedAt);
+  $('#hdr-gen').textContent = 'Generado ' + g.toLocaleString('es', { dateStyle: 'medium', timeStyle: 'short' });
+  const topCh = C.byChannel[0] || { channel: '—', n: 0 };
+  $('#hdr-meta').innerHTML = [
+    ['Conversaciones', fmt(C.total)],
+    ['Respondieron', `${fmt(C.replied)} · ${pc(C.replyRate)}`],
+    ['Canal principal', `${chName(topCh.channel)} · ${pc(topCh.n / C.total * 100)}`],
+    ['Fuentes con firma', fmt(d.sources.filter(s => SIGNED.has(s.key)).length)],
+    ['Citas', fmt(Object.values(d.closers).reduce((a, c) => a + c.total, 0))]
+  ].map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+
+  // ---------- KPIs ----------
+  const cont = C.continuity, contR = C.continuityRate;
+  $('#conv-kpis').innerHTML = [
+    { k: 'Abiertas', v: fmt(C.total), d: `${(C.total / d.window.days).toFixed(0)} por día`, hi: 1 },
+    { k: 'Respondieron', v: pc(C.replyRate), d: `${fmt(C.replied)} conversaciones` },
+    { k: '≥ 4 mensajes', v: pc(contR['>=4']), d: `${fmt(cont['>=4'])} conversaciones` },
+    { k: '≥ 6 mensajes', v: pc(contR['>=6']), d: `${fmt(cont['>=6'])} conversaciones` },
+    { k: '≥ 20 mensajes', v: pc(contR['>=20']), d: `${fmt(cont['>=20'])} conversaciones` },
+    { k: 'Mensajes por conv.', v: String(C.avgMsgs).replace('.', ','), d: 'promedio' }
+  ].map(x => `<div class="kpi${x.hi ? ' hi' : ''}"><div class="k">${x.k}</div><div class="v">${x.v}</div><div class="d">${x.d}</div></div>`).join('');
+
+  $('#conv-lede').innerHTML = `Se abrieron <strong>${fmt(C.total)}</strong> conversaciones en ${d.window.days} días
+    y <strong>${pc(C.replyRate)}</strong> recibió al menos un mensaje del lead. Pero solo
+    <strong>${pc(contR['>=4'])}</strong> llegó a cuatro mensajes: ahí es donde se separa el saludo de la conversación real.`;
+
+  // ---------- timeline ----------
+  const days = C.byDay, chans = C.byChannel.map(c => c.channel).slice(0, 6);
+  const maxDay = Math.max(1, ...days.map(x => x.n));
+  $('#tl').innerHTML = days.map(x => {
+    const segs = chans.filter(c => x.chan[c]).map(c =>
+      `<span class="seg" style="height:${(x.chan[c] / maxDay * 172).toFixed(1)}px;background:${chColor(c)}"></span>`).join('');
+    return `<div class="col" title="${x.day}: ${fmt(x.n)}">${segs}</div>`;
   }).join('');
-}
-$$('.segbar [data-seg]').forEach(b=>b.addEventListener('click',()=>{
-  SEG=b.dataset.seg;
-  $$('.segbar [data-seg]').forEach(x=>x.setAttribute('aria-pressed', String(x===b)));
-  renderSeg();
-}));
-renderSeg();
+  $('#tl-axis').innerHTML = days.map((x, i) =>
+    `<span>${(days.length <= 10 || i % 2 === 0) ? x.day.slice(5) : ''}</span>`).join('');
+  $('#tl-legend').innerHTML = chans.map(c =>
+    `<span><i style="background:${chColor(c)}"></i>${chName(c)}</span>`).join('');
 
-/* ---------------- delivery callout ---------------- */
-(function(){
-  const bad=DATA.countries.filter(c=>c.out>=15&&c.failRate>=20).sort((a,b)=>b.failRate-a.failRate);
-  const t=DATA.totals;
-  $('#deliver-callout').innerHTML=
-    `<b>${n(t.failed)} de ${n(t.out)} envíos (${pctS(t.failRate)}) fueron rechazados por WhatsApp.</b> `+
-    `No es ruido de fondo: está concentrado. `+
-    bad.map(c=>`${esc(c.country)} falla el <span class="k">${pctS(c.failRate)}</span> de sus ${n(c.out)} envíos`).join(' · ')+
-    `. Números que rebotan así también degradan la reputación del remitente, así que el costo no se queda en esos países.`;
-})();
+  // ---------- canales ----------
+  bars($('#chan-rows'), C.byChannel.map(c => ({
+    l: chName(c.channel), v: c.n, c: chColor(c.channel),
+    t: `${fmt(c.n)}  ${pc(c.n / C.total * 100)}`
+  })));
 
-/* ---------------- timeline ---------------- */
-(function(){
-  const d=DATA.timeline; if(!d.length) return;
-  const W=560,H=190,P={t:12,r:12,b:26,l:38};
-  const iw=W-P.l-P.r, ih=H-P.t-P.b;
-  const max=Math.max(...d.map(x=>Math.max(x.out,x.inb)))||1;
-  const step=iw/d.length, bw=Math.max(3,Math.min(16,step*0.42));
-  const y=v=>P.t+ih-(v/max)*ih;
-  const ticks=[0,Math.round(max/2),max];
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Mensajes de WhatsApp por día">`;
-  ticks.forEach(v=>{s+=`<line class="gridline" x1="${P.l}" x2="${W-P.r}" y1="${y(v)}" y2="${y(v)}"/><text class="tick" x="${P.l-8}" y="${y(v)+4}" text-anchor="end">${n(v)}</text>`;});
-  s+=`<line class="axisline" x1="${P.l}" x2="${W-P.r}" y1="${P.t+ih}" y2="${P.t+ih}"/>`;
-  d.forEach((x,i)=>{
-    const cx=P.l+step*i+step/2;
-    const ho=ih-(y(x.out)-P.t), hi=ih-(y(x.inb)-P.t);
-    s+=`<rect x="${cx-bw-1}" y="${y(x.out)}" width="${bw}" height="${Math.max(ho,x.out?1.5:0)}" rx="3" fill="var(--s1)"/>`;
-    s+=`<rect x="${cx+1}" y="${y(x.inb)}" width="${bw}" height="${Math.max(hi,x.inb?1.5:0)}" rx="3" fill="var(--s3)"/>`;
-    if(x.failed) s+=`<rect x="${cx-bw-1}" y="${P.t+ih-(x.failed/max)*ih}" width="${bw}" height="${Math.max((x.failed/max)*ih,1.5)}" rx="3" fill="var(--crit)"/>`;
-    s+=`<rect class="bar-hit" data-i="${i}" x="${cx-step/2}" y="${P.t}" width="${step}" height="${ih}"/>`;
-  });
-  const lab=i=>{const[,m,dd]=d[i].day.split('-');return dd+'/'+m;};
-  [0,Math.floor(d.length/2),d.length-1].forEach(i=>{
-    s+=`<text class="tick" x="${P.l+step*i+step/2}" y="${H-8}" text-anchor="middle">${lab(i)}</text>`;
-  });
-  s+='</svg>';
-  $('#timeline').innerHTML=s;
-  $$('#timeline .bar-hit').forEach(r=>{
-    const x=d[+r.dataset.i]; if(!x) return;
-    const[yy,mm,dd]=x.day.split('-');
-    bindTip(r,`<span class="tt">${dd}/${mm}/${yy}</span>
-      <span class="tr"><span>Enviados</span><span>${n(x.out)}</span></span>
-      <span class="tr"><span>Recibidos</span><span>${n(x.inb)}</span></span>
-      <span class="tr"><span>Fallidos</span><span>${n(x.failed)}</span></span>`);
-  });
-})();
+  // ---------- continuidad ----------
+  bars($('#cont-rows'), ['>=1', '>=2', '>=4', '>=6', '>=10', '>=20'].map(k => ({
+    l: k.replace('>=', '≥ ') + ' mensajes', v: cont[k],
+    t: `${fmt(cont[k])}  ${pc(contR[k])}`
+  })));
 
-/* ---------------- latency cards ---------------- */
-(function(){
-  const f=DATA.latency.firstReply, c=DATA.latency.inConv, b=DATA.latency.bot;
-  $('#lat-card-first').innerHTML=`
-    <p class="card-title">Primera respuesta al mensaje frío</p>
-    <p class="card-sub">Desde el primer envío de campaña hasta su primer mensaje. n = ${n(f.n)} contactos.</p>
-    <div style="display:flex;gap:26px;flex-wrap:wrap;align-items:flex-end">
-      <div><div class="lab mono" style="font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">Mediana</div>
-        <div style="font-family:Archivo;font-weight:600;font-size:32px;line-height:1.05;font-variant-numeric:tabular-nums">${dur(f.med)}</div></div>
-      <div><div class="lab mono" style="font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">Media</div>
-        <div style="font-family:Archivo;font-weight:600;font-size:22px;font-variant-numeric:tabular-nums;color:var(--ink-2)">${dur(f.mean)}</div></div>
-      <div><div class="lab mono" style="font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">p90</div>
-        <div style="font-family:Archivo;font-weight:600;font-size:22px;font-variant-numeric:tabular-nums;color:var(--ink-2)">${dur(f.p90)}</div></div>
-    </div>
-    <p style="font-size:13px;color:var(--ink-2);margin:14px 0 0;line-height:1.55">
-      La media es <b>${dur(f.mean)}</b> pero la mediana <b>${dur(f.med)}</b>: unas pocas que contestan al día siguiente
-      arrastran el promedio. Una de cada diez tarda más de ${dur(f.p90)}.</p>`;
-
-  $('#lat-card-conv').innerHTML=`
-    <p class="card-title">Respuesta dentro de la conversación</p>
-    <p class="card-sub">Cada mensaje suyo medido contra el mensaje nuestro anterior. n = ${n(c.n)} respuestas.</p>
-    <div style="display:flex;gap:26px;flex-wrap:wrap;align-items:flex-end">
-      <div><div class="lab mono" style="font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">Mediana</div>
-        <div style="font-family:Archivo;font-weight:600;font-size:32px;line-height:1.05;font-variant-numeric:tabular-nums;color:var(--good-ink)">${dur(c.med)}</div></div>
-      <div><div class="lab mono" style="font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">Media</div>
-        <div style="font-family:Archivo;font-weight:600;font-size:22px;font-variant-numeric:tabular-nums;color:var(--ink-2)">${dur(c.mean)}</div></div>
-      <div><div class="lab mono" style="font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">Bot responde en</div>
-        <div style="font-family:Archivo;font-weight:600;font-size:22px;font-variant-numeric:tabular-nums;color:var(--ink-2)">${dur(b.med)}</div></div>
-    </div>
-    <p style="font-size:13px;color:var(--ink-2);margin:14px 0 0;line-height:1.55">
-      Una vez enganchada contesta en <b>${dur(c.med)}</b>: es una conversación en vivo, no un intercambio de correos.
-      El bot le devuelve en <b>${dur(b.med)}</b>, así que el ritmo no lo está frenando la máquina.</p>`;
-})();
-
-/* ---------------- latency histogram ---------------- */
-let LAT='firstReply';
-function renderLat(){
-  const d=DATA.latency[LAT];
-  const max=Math.max(...d.dist.map(x=>x.n))||1;
-  const tot=d.dist.reduce((a,x)=>a+x.n,0)||1;
-  $('#dist-sub').textContent = LAT==='firstReply'
-    ? `n = ${n(d.n)} primeras respuestas · mediana ${dur(d.med)}`
-    : `n = ${n(d.n)} respuestas dentro de conversaciones activas · mediana ${dur(d.med)}`;
-  const ramp=['var(--seq-6)','var(--seq-5)','var(--seq-4)','var(--seq-3)','var(--seq-3)','var(--seq-2)','var(--seq-2)'];
-  $('#lat-hist').innerHTML=d.dist.map((x,i)=>`
-    <div class="hrow">
-      <span class="hlab">${x.label}</span>
-      <span class="htrack"><span class="hfill" style="width:${Math.max(100*x.n/max, x.n?0.8:0)}%;background:${ramp[i]}"></span></span>
-      <span class="hval">${n(x.n)} · ${pctS(100*x.n/tot)}</span>
-    </div>`).join('');
-}
-$$('.segbar [data-lat]').forEach(b=>b.addEventListener('click',()=>{
-  LAT=b.dataset.lat;
-  $$('.segbar [data-lat]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-  renderLat();
-}));
-renderLat();
-
-(function(){
-  const l=DATA.latency;
-  $('#lat-callout').innerHTML=
-    `<b>Tu percepción es correcta, pero el problema no es la lentitud: es el silencio.</b> `+
-    `Solo <span class="k">${pctS(DATA.segments.outbound.replyRate)}</span> de los contactos de campaña contesta alguna vez. `+
-    `Las que sí contestan lo hacen rápido — mediana de <span class="k">${dur(l.inConv.med)}</span> dentro del hilo, `+
-    `y <span class="k">${pctS(100*l.inConv.dist.slice(0,3).reduce((a,x)=>a+x.n,0)/l.inConv.n)}</span> de todas sus respuestas llegan en menos de 30 minutos. `+
-    `Solo <span class="k">${n(l.outsideWindow)}</span> respuestas (${pctS(l.outsideWindowPct)}) llegaron pasadas 24 h, así que la ventana de sesión de WhatsApp casi nunca se rompe por culpa de ella.`;
-})();
-
-/* ---------------- conversation tiles ---------------- */
-(function(){
-  const a=DATA.segments.all;
-  const items=[
-    {lab:'Promedio general', val:n1(a.avgMsgs), sub:'mensajes por conversación, contando las que nunca arrancaron', pill:'engañoso'},
-    {lab:'Solo las que respondieron', val:n1(a.avgMsgsReplied), sub:`mediana ${n1(a.medMsgsReplied)} · ${n1(a.avgOutReplied)} nuestros + ${n1(a.avgInReplied)} suyos`, pill:''},
-    {lab:'Las que no respondieron', val:n1((a.out-a.avgOutReplied*a.replied)/Math.max(1,a.convs-a.replied)), sub:`${n(a.convs-a.replied)} conversaciones que fueron un disparo al vacío`, pill:''},
-  ];
-  $('#conv-tiles').innerHTML=items.map(t=>`
-    <div class="tile">
-      <span class="lab">${t.lab}</span>
-      <span class="val">${t.val}</span>
-      <span class="sub">${t.sub}</span>
-      ${t.pill?`<span class="pill warn" style="margin-top:6px;align-self:flex-start">${t.pill}</span>`:''}
-    </div>`).join('');
-})();
-
-/* ---------------- depth ---------------- */
-(function(){
-  const d=DATA.depth.slice(0,10), base=DATA.totals.convs;
-  const max=d[0].convs||1;
-  $('#depth').innerHTML=d.map((x,i)=>`
-    <div class="hrow" style="grid-template-columns:104px 1fr 96px">
-      <span class="hlab">≥ ${x.n} respuesta${x.n>1?'s':''}</span>
-      <span class="htrack"><span class="hfill" style="width:${100*x.convs/max}%;background:${i===0?'var(--seq-5)':'var(--seq-3)'}"></span></span>
-      <span class="hval">${n(x.convs)} · ${pctS(100*x.convs/base)}</span>
-    </div>`).join('')+
-    `<figcaption>De ${n(base)} conversaciones, ${n(d[0].convs)} dan señal de vida y ${n(d[9].convs)} llegan a diez respuestas.
-     El filtro brutal es el turno cero; a partir del tercer turno la caída casi se detiene — quien engancha, se queda.</figcaption>`;
-})();
-
-/* ---------------- touches ---------------- */
-(function(){
-  const t=DATA.touches, keys=Object.keys(t.dist).map(Number).sort((a,b)=>a-b);
-  const tot=keys.reduce((a,k)=>a+t.dist[k],0)||1;
-  const max=Math.max(...keys.map(k=>t.dist[k]))||1;
-  $('#touches').innerHTML=keys.map(k=>`
-    <div class="hrow" style="grid-template-columns:104px 1fr 96px">
-      <span class="hlab">${k} envío${k>1?'s':''}</span>
-      <span class="htrack"><span class="hfill" style="width:${100*t.dist[k]/max}%;background:var(--seq-4)"></span></span>
-      <span class="hval">${n(t.dist[k])} · ${pctS(100*t.dist[k]/tot)}</span>
-    </div>`).join('');
-  $('#touch-callout').innerHTML=
-    `<b>El primer mensaje se lleva casi todo.</b> De las ${n(tot)} que contestaron una campaña, `+
-    `<span class="k">${n(t.dist[1]||0)}</span> lo hicieron tras el primer envío y solo <span class="k">${n(t.dist[2]||0)}</span> necesitaron un segundo. `+
-    `Mientras tanto se gastaron <span class="k">${n(t.wastedSends)}</span> envíos entregados en <span class="k">${n(t.wastedConvs)}</span> contactos que jamás respondieron. `+
-    `Antes de añadir más follow-ups conviene medir si el tercero y el cuarto rescatan a alguien.`;
-})();
-
-/* ---------------- booking ---------------- */
-(function(){
-  const b=DATA.booking, t=DATA.totals;
-  const byBot=b.bySource.conversations_ai||0;
-  $('#book-tiles').innerHTML=[
-    {lab:'Agendadas por el bot', val:n(byBot)+' de '+n(b.n), sub:'las otras '+n(b.n-byBot)+' ya tenían cita antes de que existiera la conversación'},
-    {lab:'Desde el primer envío', val:dur(b.fromFirstSend.med), sub:`mediana · n = ${n(b.fromFirstSend.n)} citas con tiempo medible`},
-    {lab:'Desde que ella responde', val:dur(b.fromEngage.med), sub:`mediana · n = ${n(b.fromEngage.n)} · aquí es donde trabaja el bot`},
-
-  ].map(x=>`<div class="tile"><span class="lab">${x.lab}</span><span class="val">${x.val}</span><span class="sub">${x.sub}</span></div>`).join('');
-
-  const srcs=Object.entries(b.bySource).map(([k,v])=>`${v} por ${k==='booking_widget'?'link de calendario':k==='conversations_ai'?'el bot de IA':esc(k)}`).join(' · ');
-  $('#book-warn').innerHTML=
-    `<b>Cuidado con estos tres números: n = ${n(b.n)}.</b> `+
-    `Solo ${n(b.n)} contactos con conversación de WhatsApp tienen cita creada, y apenas ${n(b.fromFirstSend.n)} de ellos permiten medir el tiempo desde el envío `+
-    `(en el resto la cita se creó antes del primer mensaje de WhatsApp trackeado). `+
-    `Origen de las citas: ${srcs} — o sea que el bot cerró la agenda por sí mismo en ${b.bySource.conversations_ai||0} casos y en el resto ella usó el link. `+
-    `Contexto: la subcuenta tiene <span class="k">${n(b.totalApptsLocation)}</span> citas en total en el periodo, así que WhatsApp explica una minoría del agendamiento. `+
-    `Trata esta sección como una señal temprana, no como un promedio estable.`;
-
-  const rows=b.rows.slice().sort((a,x)=>(x.apptAt||0)-(a.apptAt||0));
-  $('#book-tbl').innerHTML=
-    `<thead><tr><th>Contacto</th><th>Origen</th><th>1.º envío → cita</th><th>Su 1.ª resp. → cita</th><th>Msgs</th><th>Reservada por</th><th>Estado</th></tr></thead><tbody>`+
-    rows.map(r=>`<tr>
-      <td><span class="flag">${r.iso}</span>${esc(r.name)}</td>
-      <td class="n">${r.campaign?esc(r.campaign):'<span style="color:var(--muted)">orgánico</span>'}</td>
-      <td class="n">${dur(r.bookMs)}</td>
-      <td class="n">${dur(r.bookEngageMs)}</td>
-      <td class="n">${r.msgsToBook??'—'}</td>
-      <td class="n">${r.apptSource==='conversations_ai'?'<span class="pill good">bot IA</span>':'<span class="pill">link</span>'}</td>
-      <td class="n">${r.apptStatus==='confirmed'?'<span class="pill good">confirmada</span>':esc(r.apptStatus||'—')}</td>
-    </tr>`).join('')+`</tbody>`;
-})();
-
-/* ---------------- countries ---------------- */
-(function(){
-  const big=DATA.countries.filter(c=>c.convs>=10);
-  const byReply=big.slice().sort((a,b)=>b.replyRate-a.replyRate);
-  const maxR=Math.max(...byReply.map(c=>c.replyRate))||1;
-  $('#ctry-reply').innerHTML=byReply.map(c=>`
-    <div class="hrow" style="grid-template-columns:150px 1fr 92px">
-      <span class="hlab" style="text-align:left"><span class="flag">${c.iso}</span>${esc(c.country)}</span>
-      <span class="htrack"><span class="hfill" style="width:${Math.max(100*c.replyRate/maxR,c.replyRate?1:0)}%;background:var(--s1)"></span></span>
-      <span class="hval">${pctS(c.replyRate)} · ${n(c.replied)}/${n(c.convs)}</span>
-    </div>`).join('');
-
-  const byFail=big.slice().sort((a,b)=>b.failRate-a.failRate);
-  const maxF=Math.max(...byFail.map(c=>c.failRate))||1;
-  $('#ctry-fail').innerHTML=byFail.map(c=>`
-    <div class="hrow" style="grid-template-columns:150px 1fr 92px">
-      <span class="hlab" style="text-align:left"><span class="flag">${c.iso}</span>${esc(c.country)}</span>
-      <span class="htrack"><span class="hfill" style="width:${Math.max(100*c.failRate/maxF,c.failRate?1:0)}%;background:${c.failRate>=20?'var(--crit)':c.failRate>=8?'var(--warn)':'var(--s3)'}"></span></span>
-      <span class="hval">${pctS(c.failRate)} · ${n(c.failed)}/${n(c.out)}</span>
-    </div>`).join('');
-
-  const COLS=[
-    {k:'country',t:'País',fmt:c=>`<span class="flag">${c.iso}</span>${esc(c.country)}`,cls:''},
-    {k:'convs',t:'Contactos',fmt:c=>n(c.convs)},
-    {k:'out',t:'Enviados',fmt:c=>n(c.out)},
-    {k:'failRate',t:'% falla',fmt:c=>`<span style="color:${c.failRate>=20?'var(--crit-ink)':c.failRate>=8?'var(--warn-ink)':'inherit'}">${pctS(c.failRate)}</span>`},
-    {k:'replied',t:'Respondieron',fmt:c=>n(c.replied)},
-    {k:'replyRate',t:'% responde',fmt:c=>pctS(c.replyRate),bar:true},
-    {k:'inb',t:'Msgs recibidos',fmt:c=>n(c.inb)},
-    {k:'msgsPerReplier',t:'Msgs/persona',fmt:c=>n1(c.msgsPerReplier)},
-    {k:'latMed',t:'Resp. mediana',fmt:c=>dur(c.latMed)},
-    {k:'booked',t:'Citas',fmt:c=>c.booked||'—'},
-  ];
-  let sortK='convs', sortD=-1, filter='';
-  const maxRate=Math.max(...DATA.countries.map(c=>c.replyRate))||1;
-  function draw(){
-    const rows=DATA.countries
-      .filter(c=>c.country.toLowerCase().includes(filter))
-      .sort((a,b)=>{const x=a[sortK],y=b[sortK];
-        if(typeof x==='string')return sortD*x.localeCompare(y);
-        return sortD*(((x??-1))-((y??-1)));});
-    $('#ctry-tbl').innerHTML=
-      `<thead><tr>`+COLS.map(c=>`<th data-k="${c.k}"${sortK===c.k?` aria-sort="${sortD<0?'descending':'ascending'}"`:''}>${c.t}${sortK===c.k?` <span class="arr">${sortD<0?'▼':'▲'}</span>`:''}</th>`).join('')+`</tr></thead><tbody>`+
-      rows.map(c=>`<tr>`+COLS.map(col=>{
-        if(col.bar) return `<td class="n"><span class="barcell"><span class="minibar" style="width:${Math.max(52*c.replyRate/maxRate,c.replyRate?2:0)}px"></span>${col.fmt(c)}</span></td>`;
-        return `<td class="${col.k==='country'?'':'n'}">${col.fmt(c)}</td>`;
-      }).join('')+`</tr>`).join('')+`</tbody>`;
-    $$('#ctry-tbl thead th').forEach(th=>th.onclick=()=>{
-      const k=th.dataset.k;
-      if(k===sortK) sortD*=-1; else {sortK=k; sortD=k==='country'?1:-1;}
-      draw();
-    });
+  // ---------- números ----------
+  const nt = $('#num-tbl');
+  if (d.numbers.length) {
+    nt.innerHTML = `<thead><tr><th>Número</th><th class="r">Conv.</th><th class="r">Respondió</th><th class="r">Agendó</th></tr></thead><tbody>` +
+      d.numbers.map(n => `<tr><td>${n.label}</td><td class="n">${fmt(n.convs)}</td><td class="n">${fmt(n.replied)} <span class="dim">${pc(n.replyRate)}</span></td><td class="n">${fmt(n.booked)}</td></tr>`).join('') +
+      `</tbody>`;
+  } else {
+    nt.outerHTML = `<p class="note">Sin conversaciones entrantes con número identificable en la ventana.</p>`;
   }
-  $('#ctry-search').addEventListener('input',e=>{filter=e.target.value.toLowerCase().trim(); draw();});
-  draw();
-})();
 
-/* ---------------- campaigns ---------------- */
-(function(){
-  const C=DATA.campaigns;
-  $('#camp-tbl').innerHTML=
-    `<thead><tr><th>Campaña</th><th>Contactos</th><th>Enviados</th><th>% entrega</th><th>Respondieron</th><th>% responde</th><th>Msgs recibidos</th><th>1.ª resp. mediana</th><th>Citas</th><th>Oportunidades</th></tr></thead><tbody>`+
-    C.map(c=>{
-      const org=c.name.startsWith('(');
+  // ---------- fuentes ----------
+  const GROUPS = ['Instagram', 'TikTok', 'YouTube', 'WhatsApp', 'Campañas', 'Otros', 'Sin atribuir'];
+  const maxSrc = Math.max(1, ...d.sources.map(s => s.convs));
+  let rows = '';
+  for (const grp of GROUPS) {
+    const list = d.sources.filter(s => s.group === grp);
+    if (!list.length) continue;
+    rows += `<tr class="grp"><td colspan="8">${grp}</td></tr>`;
+    rows += list.map(s => {
+      const w = Math.max(2, s.convs / maxSrc * 54);
+      const rate = s.bookRate >= 2 ? 'ok' : (s.bookRate > 0 ? 'warn' : 'crit');
       return `<tr>
-      <td>${org?`<span style="color:var(--muted)">${esc(c.name)}</span>`:`<span class="mono" style="font-size:12.5px">${esc(c.name)}</span>`}</td>
-      <td class="n">${n(c.convs)}</td>
-      <td class="n">${n(c.out)}</td>
-      <td class="n"><span style="color:${c.deliveryRate<80?'var(--crit-ink)':'inherit'}">${pctS(c.deliveryRate)}</span></td>
-      <td class="n">${n(c.replied)}</td>
-      <td class="n"><span class="barcell"><span class="minibar" style="width:${Math.max(52*c.replyRate/100,c.replyRate?2:0)}px;background:${org?'var(--s3)':'var(--s1)'}"></span>${pctS(c.replyRate)}</span></td>
-      <td class="n">${n(c.inb)}</td>
-      <td class="n">${dur(c.frlMed)}</td>
-      <td class="n">${c.booked||'—'}</td>
-      <td class="n">${c.oppValue?'$'+n(c.oppValue):'—'}</td>
-    </tr>`;}).join('')+`</tbody>`;
+        <td>${s.label}</td>
+        <td class="n"><span class="minibar" style="width:${w}px"></span>${fmt(s.convs)}</td>
+        <td class="n">${fmt(s.cont4)} <span class="dim">${pc(s.cont4Rate)}</span></td>
+        <td class="n">${fmt(s.replied)}</td>
+        <td class="n">${pc(s.replyRate)}</td>
+        <td class="n">${String(s.avgMsgs).replace('.', ',')}</td>
+        <td class="n">${fmt(s.qualified)}</td>
+        <td class="n">${fmt(s.booked)} <span class="tag ${rate}">${pc(s.bookRate)}</span></td>
+      </tr>`;
+    }).join('');
+  }
+  const tot = d.sources.reduce((a, s) => ({
+    convs: a.convs + s.convs, cont4: a.cont4 + s.cont4, replied: a.replied + s.replied,
+    qualified: a.qualified + s.qualified, booked: a.booked + s.booked
+  }), { convs: 0, cont4: 0, replied: 0, qualified: 0, booked: 0 });
+  $('#src-tbl').innerHTML = `<thead><tr>
+      <th>Fuente</th><th class="r">Conversaciones</th><th class="r">≥ 4 msgs</th>
+      <th class="r">Respondieron</th><th class="r">% responde</th><th class="r">Msgs / conv.</th>
+      <th class="r">Calificadas</th><th class="r">Agendadas</th>
+    </tr></thead><tbody>${rows}
+    <tr class="tot"><td>Total</td><td class="n">${fmt(tot.convs)}</td><td class="n">${fmt(tot.cont4)}</td>
+    <td class="n">${fmt(tot.replied)}</td><td class="n">${pc(tot.replied / tot.convs * 100)}</td>
+    <td class="n">—</td><td class="n">${fmt(tot.qualified)}</td><td class="n">${fmt(tot.booked)}</td></tr>
+    </tbody>`;
 
-  const org=C.find(c=>c.name.startsWith('(lead'));
-  const best=C.filter(c=>!c.name.startsWith('(')).sort((a,b)=>b.replyRate-a.replyRate)[0];
-  $('#camp-callout').innerHTML=
-    `<b>Un lead que escribe primero vale un orden de magnitud más que uno al que escribimos nosotros.</b> `+
-    `Las ${n(org.convs)} conversaciones entrantes responden al <span class="k">100 %</span> y generan `+
-    `<span class="k">${n(org.inb)}</span> mensajes; la mejor campaña saliente (<span class="k">${esc(best.name)}</span>) llega al `+
-    `<span class="k">${pctS(best.replyRate)}</span>. Vale la pena separar los dos canales en todos los reportes: `+
-    `mezclarlos infla las campañas y esconde el valor real del inbound.`;
-})();
+  const firmadas = d.sources.filter(s => SIGNED.has(s.key));
+  const nFirm = firmadas.reduce((a, s) => a + s.convs, 0);
+  const firm4 = firmadas.reduce((a, s) => a + s.cont4, 0);
+  const resto = tot.convs - nFirm;
+  const resto4 = tot.cont4 - firm4;
+  $('#src-callout').innerHTML = `<div class="callout warn">
+    <h4>Cobertura de la atribución</h4>
+    <p>De las <strong>${fmt(tot.convs)}</strong> conversaciones con mensajes leídos, solo <strong>${fmt(nFirm)}</strong>
+    (${pc(nFirm / tot.convs * 100)}) traen firma de trigger link. El resto se clasifica por canal:
+    sabemos por dónde entró, no qué la motivó.</p>
+    <p>Esa minoría se comporta de otra manera: <strong>${pc(firm4 / nFirm * 100)}</strong> de las conversaciones
+    con firma llega a cuatro mensajes, contra <strong>${pc(resto4 / resto * 100)}</strong> del resto.
+    Quien llega por un link que ya explica de dónde viene, conversa de verdad.</p></div>`;
 
-/* ---------------- timing ---------------- */
-(function(){
-  const hs=DATA.hours.filter(h=>h.sent>0);
-  const maxH=Math.max(...hs.map(h=>h.sent))||1;
-  $('#hours').innerHTML=hs.map(h=>`
-    <div class="hrow" style="grid-template-columns:64px 1fr 152px">
-      <span class="hlab">${String(h.h).padStart(2,'0')}:00</span>
-      <span class="htrack"><span class="hfill" style="width:${100*h.sent/maxH}%;background:var(--seq-4)"></span></span>
-      <span class="hval">${n(h.sent)} env · ${pctS(h.sent?100*h.replied/h.sent:0)} resp</span>
-    </div>`).join('');
+  // ---------- embudo ----------
+  const F = d.funnel, order = ['context_ready', 'profile_ready', 'qualified_lead', 'appointment_sent', 'appointment_booked', 'ai_attended'];
+  const FL = {
+    context_ready: 'Contexto capturado', profile_ready: 'Perfil completo',
+    qualified_lead: 'Calificado', appointment_sent: 'Link de agenda enviado',
+    appointment_booked: 'Cita agendada', ai_attended: 'Atendido por el bot'
+  };
+  bars($('#funnel-rows'), order.filter(k => k in F).map((k, i) => ({
+    l: FL[k], v: F[k], c: `var(--seq-${Math.min(6, i + 2)})`, t: fmt(F[k])
+  })));
 
-  const ds=DATA.dow.filter(d=>d.sent>0);
-  const maxD=Math.max(...ds.map(d=>d.sent))||1;
-  $('#dow').innerHTML=ds.map(d=>`
-    <div class="hrow" style="grid-template-columns:84px 1fr 152px">
-      <span class="hlab" style="text-align:left">${d.d}</span>
-      <span class="htrack"><span class="hfill" style="width:${100*d.sent/maxD}%;background:var(--seq-3)"></span></span>
-      <span class="hval">${n(d.sent)} env · ${pctS(d.sent?100*d.replied/d.sent:0)} resp</span>
-    </div>`).join('');
+  // ---------- latencia ----------
+  const L = d.latency;
+  $('#lat-lede').innerHTML = `La mediana del lead para contestar por primera vez es <strong>${dur(L.firstReply.med)}</strong>
+    (p90 ${dur(L.firstReply.p90)}). La nuestra para responderle, <strong>${dur(L.bot.med)}</strong>.`;
+  $('#lat-frl-note').textContent = `Mediana ${dur(L.firstReply.med)} · p90 ${dur(L.firstReply.p90)} · n=${fmt(L.firstReply.n)}`;
+  $('#lat-bot-note').textContent = `Mediana ${dur(L.bot.med)} · p90 ${dur(L.bot.p90)} · n=${fmt(L.bot.n)}`;
+  bars($('#lat-frl'), L.firstReply.dist.map(b => ({ l: b.label, v: b.n })));
+  bars($('#lat-bot'), L.bot.dist.map(b => ({ l: b.label, v: b.n, c: 'var(--s3)' })));
 
-  const top=hs.slice().sort((a,b)=>b.sent-a.sent).slice(0,2);
-  $('#timing-callout').innerHTML=
-    `<b>Casi todo el volumen sale en dos franjas: ${top.map(h=>String(h.h).padStart(2,'0')+':00').join(' y ')} hora de Nueva York.</b> `+
-    `Con solo ${hs.length} horas y ${ds.length} días distintos probados, las diferencias de tasa de respuesta que ves aquí `+
-    `no son concluyentes. Es la métrica más barata de mejorar: partir el próximo envío en dos o tres franjas `+
-    `(mañana, mediodía, noche) y comparar. Ojo además con el huso: la mayoría de los contactos no está en Nueva York.`;
-})();
+  // ---------- horas y días ----------
+  bars($('#hours'), d.hours.filter(h => h.sent).map(h => ({
+    l: String(h.h).padStart(2, '0') + ':00', v: h.sent,
+    t: `${fmt(h.sent)} · ${fmt(h.replied)} resp.`
+  })), { empty: 'Sin datos de hora.' });
+  bars($('#dow'), d.dow.filter(x => x.sent).map(x => ({
+    l: x.d, v: x.sent, t: `${fmt(x.sent)} · ${fmt(x.replied)} resp.`
+  })), { empty: 'Sin datos de día.' });
 
-/* ---------------- proposals ---------------- */
-(function(){
-  const t=DATA.totals, l=DATA.latency, s=DATA.segments, b=DATA.booking;
-  const cFail=DATA.countries.filter(c=>c.out>=15&&c.failRate>=20).map(c=>`${c.country} ${pctS(c.failRate)}`).join(' · ');
-  const props=[
-    {h:'Salud del número emisor y calidad de la lista',
-     p:'Tasa de fallo por país, por campaña y por día, con umbral de alerta. Un rechazo no solo pierde ese mensaje: acumulados degradan la calificación de calidad del número de WhatsApp Business y pueden bajarte el límite de envío. Es la métrica que protege el canal entero.',
-     e:`Hoy: <b>${pctS(t.failRate)}</b> global, pero concentrado en ${cFail}.`},
-    {h:'Costo por respuesta y por agenda',
-     p:'Dividir el gasto de plantillas de WhatsApp entre respuestas obtenidas y entre citas creadas. Es lo que convierte «tasa de respuesta» en una decisión de presupuesto: te dice cuánto cuesta realmente que una persona conteste y cuánto cuesta llenar una silla en el calendario.',
-     e:`Hoy tienes los denominadores: <b>${n(t.replied)}</b> respuestas y <b>${n(t.booked)}</b> agendas sobre <b>${n(t.out)}</b> envíos. Falta cruzarlo con el costo de plantilla.`},
-    {h:'Rescate por follow-up: ¿sirve el segundo, tercero y cuarto toque?',
-     p:'Medir cuántas respuestas nuevas aporta cada toque adicional. Ahora mismo el sistema manda recordatorios sin saber si rescatan a alguien o solo consumen presupuesto y paciencia.',
-     e:`Hoy: de las ${n(DATA.touches.n)} que respondieron, <b>${n(DATA.touches.dist[1]||0)}</b> lo hicieron al primer envío. Se gastaron <b>${n(DATA.touches.wastedSends)}</b> envíos en <b>${n(DATA.touches.wastedConvs)}</b> contactos mudos.`},
-    {h:'Calidad de la conversación, no solo su longitud',
-     p:'Cuántos de los datos que el bot necesita (síntoma, resultados de laboratorio, presupuesto, ciudad) quedan efectivamente capturados por conversación. Un hilo de 20 mensajes que no extrae nada es peor que uno de 6 que califica.',
-     e:`Hoy: <b>${n1(s.all.avgMsgsReplied)}</b> mensajes de media en las conversaciones vivas, sin ninguna medida de qué se obtuvo en ellos.`},
-    {h:'Abandono por turno del bot',
-     p:'En qué mensaje concreto del guion deja de contestar. No «se cayó en el turno 3», sino qué pregunta hizo el bot justo antes. Es el diagnóstico que convierte el embudo de profundidad en una edición del prompt.',
-     e:`Hoy: <b>${n(DATA.depth[0].convs-DATA.depth[2].convs)}</b> conversaciones mueren entre la primera y la tercera respuesta, y no sabemos con qué pregunta.`},
-    {h:'Atribución del agendamiento',
-     p:'Qué proporción de todas las citas de la subcuenta nace en WhatsApp frente a otros canales, y dentro de WhatsApp, cuántas cierra el bot solo contra cuántas necesitan el link o una persona.',
-     e:`Hoy: <b>${n(b.n)}</b> de <b>${n(b.totalApptsLocation)}</b> citas del periodo tienen conversación de WhatsApp detrás; solo <b>${b.bySource.conversations_ai||0}</b> las cerró el bot por sí mismo.`},
-    {h:'Ventana de 24 horas y coste de reapertura',
-     p:'Porcentaje de conversaciones que expiran la ventana de servicio de WhatsApp y hay que reabrir con plantilla de pago. Marca el límite real de cuánto puedes esperar antes de que reengancharla cueste dinero.',
-     e:`Hoy: solo <b>${n(l.outsideWindow)}</b> respuestas (<b>${pctS(l.outsideWindowPct)}</b>) llegaron pasadas 24 h. La ventana no es hoy tu cuello de botella — conviene vigilarla, no optimizarla.`},
-    {h:'Cohorte de ingreso: qué pasa con cada lote a 7, 14 y 30 días',
-     p:'Seguir cada campaña como cohorte en lugar de como foto. Contesta la pregunta que ningún número puntual responde: ¿las que no contestaron en el día siguen apareciendo después, o están definitivamente perdidas?',
-     e:`Hoy: la ventana de datos es de <b>${DATA.timeline.length}</b> días con actividad, suficiente para empezar a construir la primera cohorte de 30.`},
-  ];
-  $('#props').innerHTML=props.map((p,i)=>`
-    <div class="prop">
-      <span class="idx">${String(i+1).padStart(2,'0')}</span>
-      <div><h3>${p.h}</h3><p>${p.p}</p><span class="ev">${p.e}</span></div>
-    </div>`).join('');
-})();
+  // ---------- campañas y closers ----------
+  bars($('#camp-rows'), d.campaigns.map(c => ({ l: c.tag, v: c.contacts })));
+  const cl = Object.entries(d.closers);
+  $('#closer-tbl').innerHTML = `<thead><tr><th>Closer</th><th class="r">Citas</th><th class="r">Confirmadas</th><th class="r">Canceladas</th></tr></thead><tbody>` +
+    cl.map(([name, c]) => `<tr><td>${name}</td><td class="n">${fmt(c.total)}</td>
+      <td class="n">${fmt(c.byStatus.confirmed || 0)}</td>
+      <td class="n">${fmt(c.byStatus.cancelled || 0)}</td></tr>`).join('') + `</tbody>`;
+
+  $('#foot-gen').innerHTML = `Generado el ${g.toLocaleString('es', { dateStyle: 'long', timeStyle: 'short' })}
+    desde la API v2 de GoHighLevel · location <span class="mono">qv9rF8ulG9G4xN53nl3v</span> ·
+    ${fmt(C.withMessages)} hilos de conversación leídos · ${fmt(d.failedMessages)} mensajes fallidos en la ventana.`;
+}
+
+if (DATA) render();
+else document.body.insertAdjacentHTML('beforeend',
+  '<div class="wrap" style="padding:40px 24px"><p>Sin datos. Ejecutá <span class="mono">python scripts/etl.py</span> y volvé a inyectar.</p></div>');
 </script>

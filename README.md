@@ -1,59 +1,70 @@
-# Señal y Silencio — Dashboard de métricas de WhatsApp
+# Señal y Silencio — Reporte de conversaciones
 
-Tablero interactivo del canal de WhatsApp de la subcuenta de GoHighLevel de Bernard Kizer
-(`qv9rF8ulG9G4xN53nl3v`), reconstruido mensaje por mensaje desde la API REST v2 de
-LeadConnector.
+Tablero del embudo conversacional de la subcuenta de GoHighLevel de Bernard Kizer
+(`qv9rF8ulG9G4xN53nl3v`), reconstruido hilo por hilo desde la API REST v2 de LeadConnector.
 
-**Ventana de datos: 22/07/2026 – 21/08/2026.** Las cifras están congeladas en el HTML;
-el dashboard no consulta la API en tiempo de ejecución.
+**Ventana de datos: 19/08/2026 – 02/09/2026 (14 días).** Las cifras están congeladas en el
+HTML; el dashboard no consulta la API en tiempo de ejecución.
 
 ## Cómo se obtuvieron los datos
 
-Se barrieron las 18.593 conversaciones de la subcuenta, se aislaron las 795 con actividad
-de WhatsApp o tag de campaña `[whatsapp] - campana-*`, y se leyeron sus 3.522 mensajes uno
-a uno. Cada tiempo de respuesta se calculó comparando el sello de tiempo de un mensaje con
-el del mensaje inmediatamente anterior en el hilo — no son estimaciones.
+Se paginaron las conversaciones de la subcuenta por fecha de creación y se leyeron los
+**6.270 hilos** abiertos dentro de la ventana, mensaje por mensaje. Cada latencia se calcula
+comparando el sello de tiempo de un mensaje con el del anterior en el mismo hilo — no son
+estimaciones.
+
+La **fuente de tráfico** se deduce de la firma del primer mensaje del lead. Los 15 trigger
+links de la subcuenta redirigen a `wa.me` con un texto pre-cargado distinto cada uno, así que
+el origen queda escrito en el propio mensaje. Lo que no llega por trigger link se clasifica
+por canal, que dice por dónde entró pero no qué lo motivó.
 
 ## Qué mide
 
 | Bloque | Contenido |
 |---|---|
-| Envío y entrega | Enviados, entregados, leídos y fallidos, con embudo en contactos y volumen diario |
-| Tiempo de respuesta | Primera respuesta al mensaje frío **vs.** respuesta dentro de la conversación (son métricas distintas), más el tiempo de reacción del bot |
-| Conversación | Promedio y mediana de mensajes, embudo de profundidad, toques hasta la primera respuesta |
-| Agendamiento | Tiempo hasta la cita y atribución real al bot |
-| Países | Tasa de respuesta y tasa de fallo por prefijo E.164 |
-| Campañas | Rendimiento por tag, con los leads entrantes separados |
-| Timing | Hora y día de disparo |
-| Recomendación | Ocho métricas adicionales que el dataset ya soporta |
+| Conversaciones | Abiertas, respondidas y continuadas (≥4, ≥6, ≥20 mensajes), timeline diaria apilada por canal, canal de entrada y número de entrada |
+| Fuentes de tráfico | Conversaciones, profundidad, tasa de respuesta, calificadas y agendadas por cada fuente |
+| Calificación | Embudo acumulado del agente de IA por etiqueta |
+| Ritmo | Latencia del lead para contestar la primera vez y la nuestra para responderle |
+| Cuándo | Hora y día de apertura, con la porción que recibió respuesta |
+| Campañas y citas | Contactos por campaña saliente y agenda por closer |
 
 ## Hallazgos principales
 
-- **8 % de los envíos falla** (129 de 1.607), concentrado en Brasil (73,9 %) y Chile (64,7 %).
-- **La campaña saliente convierte al 7,6 %**; el lead entrante responde al 100 %.
-- **La demora es solo del primer contacto**: mediana de 23,2 min para la primera respuesta,
-  pero 1,6 min una vez que la conversación está viva.
-- **Solo 2 de las 7 citas las cerró el bot**; las otras 5 ya existían antes del primer
-  mensaje de WhatsApp.
+- **Se abren 448 conversaciones por día**, pero solo el **27,9 % llega a cuatro mensajes**.
+  Ahí se separa el saludo de la conversación real.
+- **Instagram es el canal principal con el 51 %** del volumen, por encima de WhatsApp (26 %).
+- **La atribución cubre el 2,4 %**: solo 153 de 6.270 conversaciones traen firma de trigger
+  link. El resto se clasifica apenas por canal.
+- **Esa minoría se comporta de otra manera**: el 98 % de las conversaciones con firma llega a
+  cuatro mensajes, contra el 26 % del resto.
+- **La campaña saliente trae 10 veces más volumen y una décima parte de la profundidad**
+  (11,7 % llega a cuatro mensajes, contra 98 % de los trigger links de Instagram).
+- **IG Orgánico son 3.189 conversaciones y cero agendas.** O no convierte, o el flujo del bot
+  no corre sobre Instagram y por eso no se etiqueta. Hay que distinguir cuál de las dos.
 
 ## Despliegue
 
 Sitio estático sin build. `vercel.json` activa `cleanUrls` y mantiene viva la ruta
-`/dashboard-whatsapp-metricas`. En Vercel basta importar el repo y desplegar: no hay
-comando de build, dependencias ni variables de entorno.
+`/dashboard-whatsapp-metricas`. No hay comando de build, dependencias ni variables de entorno.
 
-El HTML es autocontenido — la única petición externa es a Google Fonts.
-Funciona en tema claro y oscuro según la preferencia del navegador.
+El HTML es autocontenido — la única petición externa es a Google Fonts. Funciona en tema claro
+y oscuro según la preferencia del navegador.
 
-## Aviso sobre datos personales
+## Datos personales
 
-La tabla «Las agendas, una por una» contiene **nombres reales de leads**. El repositorio es
-público. Las cabeceras incluyen `X-Robots-Tag: noindex, nofollow` para desalentar la
-indexación, pero eso no restringe el acceso: cualquiera con la URL puede leerlo. Si el
-tablero va a circular fuera del equipo, conviene anonimizar esa tabla antes.
+Esta versión **no publica nombres, teléfonos ni correos de leads**: todas las cifras son
+agregadas. La tabla «Las agendas, una por una» de la versión anterior, que sí los incluía, fue
+retirada. Las cabeceras mantienen `X-Robots-Tag: noindex, nofollow`.
 
 ## Regenerar con datos frescos
 
-El HTML se compila desde una plantilla con marcador `/*__DATA__*/` que se sustituye por el
-JSON de métricas. La plantilla y el pipeline de extracción viven en el proyecto `smg`, no en
-este repositorio.
+El HTML se compila desde una plantilla con el marcador `/*__DATA__*/`, que se sustituye por el
+JSON de métricas. El pipeline vive en el proyecto `smg`:
+
+```bash
+python scripts/etl.py 14     # extrae de la API v2 -> data.json  (~13 min)
+python scripts/build.py      # inyecta en la plantilla -> dashboard-whatsapp-metricas.html
+```
+
+Luego se copia el resultado a este repositorio como `index.html`.
